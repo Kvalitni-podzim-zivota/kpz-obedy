@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jídelní lístek | Rozvoz obědů – Služby KPŽ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:       #1a2e3b;
+    --teal:       #2a6b6e;
+    --teal-light: #3a8d91;
+    --warm:       #f5f0e8;
+    --cream:      #fdfbf7;
+    --border:     #c8bfaa;
+    --text:       #1e1e1e;
+    --muted:      #5a5a5a;
+    --a-color:    #1a4e6e;
+    --a-light:    #e8f2f8;
+    --a-border:   #5a9ec0;
+    --b-color:    #5c3a00;
+    --b-light:    #fdf3e3;
+    --b-border:   #c08040;
+    --soup-bg:    #f0f7f0;
+    --soup-color: #2d5a3d;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 17px; line-height: 1.6;
+    color: var(--text); background: var(--cream);
+  }
+
+  /* ── NAV ── */
+  .site-nav {
+    background: var(--navy); position: sticky; top: 0; z-index: 100;
+    border-bottom: 3px solid var(--teal);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 1.5rem;
+  }
+  .nav-logo { display: flex; flex-direction: column; padding: 0.75rem 0; text-decoration: none; }
+  .nav-logo span:first-child {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1.2;
+  }
+  .nav-logo span:last-child {
+    font-size: 0.75rem; color: #aac5c6; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .nav-links { display: flex; list-style: none; }
+  .nav-links a {
+    display: block; padding: 1.1rem 1rem;
+    color: #d4e8e9; text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0.03em; border-left: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-links a:hover { background: var(--teal); color: #fff; }
+  .nav-links a.active { background: var(--teal); color: #fff; }
+  .nav-links a.nav-cta { background: var(--teal); color: #fff; font-weight: 600; }
+  .nav-links a.nav-cta:hover { background: var(--teal-light); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    background: var(--navy); padding: 3rem 1.5rem 2.5rem;
+    border-bottom: 4px solid var(--teal);
+  }
+  .page-header-inner { max-width: 1100px; margin: 0 auto; }
+  .breadcrumb {
+    font-size: 0.8rem; color: #7ecfd4; margin-bottom: 1rem;
+    display: flex; gap: 0.5rem; align-items: center;
+  }
+  .breadcrumb a { color: #7ecfd4; text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .page-header h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700; color: #fff; margin-bottom: 0.75rem;
+  }
+  .page-header-lead { color: #b8d4d5; font-size: 1.05rem; max-width: 560px; }
+
+  /* ── LAYOUT ── */
+  .section { padding: 3rem 1.5rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    background: #e8f4f4; border: 1.5px solid var(--teal);
+    padding: 1.1rem 1.4rem; margin-bottom: 2rem;
+    display: flex; gap: 0.85rem; align-items: flex-start;
+  }
+  .info-box-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .info-box-text h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.15rem;
+  }
+  .info-box-text p { font-size: 0.88rem; color: var(--muted); }
+
+  /* ── TÝDEN TABS ── */
+  .week-tabs {
+    display: flex; border-bottom: 2px solid var(--border);
+    margin-bottom: 2rem; overflow-x: auto;
+  }
+  .week-tab {
+    padding: 0.75rem 1.5rem; border: none; background: none;
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+    color: var(--muted); cursor: pointer;
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+    white-space: nowrap; transition: color 0.15s;
+  }
+  .week-tab:hover { color: var(--teal); }
+  .week-tab.active { color: var(--navy); border-bottom-color: var(--teal); font-weight: 600; }
+
+  .menu-week { display: none; }
+  .menu-week.active { display: block; }
+
+  /* ── DODAVATEL VÝBĚR ── */
+  .supplier-chooser {
+    margin-bottom: 2rem;
+  }
+  .supplier-chooser-label {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;
+    display: block;
+  }
+  .supplier-tabs {
+    display: flex; gap: 0;
+  }
+  .supplier-tab {
+    flex: 1; max-width: 300px;
+    padding: 1rem 1.5rem; border: 2px solid var(--border);
+    background: #fff; cursor: pointer; text-align: left;
+    font-family: 'IBM Plex Sans', sans-serif;
+    transition: border-color 0.15s, background 0.15s;
+    margin-right: -2px; position: relative;
+  }
+  .supplier-tab:last-child { margin-right: 0; }
+  .supplier-tab-name {
+    font-size: 1rem; font-weight: 700; display: block; margin-bottom: 0.1rem;
+  }
+  .supplier-tab-desc {
+    font-size: 0.82rem; color: var(--muted); display: block;
+  }
+  /* Dodavatel A aktivní */
+  .supplier-tab.tab-a.active {
+    border-color: var(--a-color); background: var(--a-light); z-index: 1;
+  }
+  .supplier-tab.tab-a.active .supplier-tab-name { color: var(--a-color); }
+  .supplier-tab.tab-a:not(.active):hover { border-color: var(--a-border); }
+  /* Dodavatel B aktivní */
+  .supplier-tab.tab-b.active {
+    border-color: var(--b-color); background: var(--b-light); z-index: 1;
+  }
+  .supplier-tab.tab-b.active .supplier-tab-name { color: var(--b-color); }
+  .supplier-tab.tab-b:not(.active):hover { border-color: var(--b-border); }
+
+  /* Aktivní indikátor nahoře */
+  .supplier-tab.active::before {
+    content: ''; position: absolute; top: -2px; left: -2px; right: -2px;
+    height: 4px;
+  }
+  .supplier-tab.tab-a.active::before { background: var(--a-color); }
+  .supplier-tab.tab-b.active::before { background: var(--b-color); }
+
+  /* ── DODAVATEL OBSAH ── */
+  .supplier-panel { display: none; }
+  .supplier-panel.active { display: block; }
+
+  /* Barevný pruh s názvem dodavatele */
+  .supplier-header {
+    padding: 0.9rem 1.25rem; margin-bottom: 0;
+    display: flex; align-items: center; gap: 0.75rem;
+    border: 2px solid; border-bottom: none;
+  }
+  .supplier-header.a { background: var(--a-light); border-color: var(--a-color); }
+  .supplier-header.b { background: var(--b-light); border-color: var(--b-color); }
+  .supplier-header-name {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.1rem; font-weight: 700;
+  }
+  .supplier-header.a .supplier-header-name { color: var(--a-color); }
+  .supplier-header.b .supplier-header-name { color: var(--b-color); }
+  .supplier-header-note {
+    font-size: 0.82rem; color: var(--muted);
+  }
+
+  /* ── MENU DNY ── */
+  .menu-days {
+    border: 2px solid;
+    border-top: none;
+  }
+  .supplier-panel.active.panel-a .menu-days { border-color: var(--a-color); }
+  .supplier-panel.active.panel-b .menu-days { border-color: var(--b-color); }
+
+  .menu-day {
+    border-bottom: 1px solid var(--border);
+    background: #fff;
+  }
+  .menu-day:last-child { border-bottom: none; }
+
+  .day-header {
+    background: var(--navy); color: #fff;
+    padding: 0.65rem 1.25rem;
+    display: flex; align-items: baseline; gap: 0.75rem;
+  }
+  .day-name {
+    font-family: 'Source Serif 4', serif; font-size: 1rem; font-weight: 700;
+  }
+  .day-date { font-size: 0.78rem; color: #7ecfd4; }
+
+  /* Polévka */
+  .day-soup {
+    display: flex; align-items: baseline; gap: 0.6rem;
+    padding: 0.6rem 1.25rem;
+    background: var(--soup-bg);
+    border-bottom: 1px solid #d8ecd8;
+  }
+  .soup-label {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--soup-color); flex-shrink: 0;
+  }
+  .soup-name { font-size: 0.9rem; color: var(--text); }
+
+  /* Jídla */
+  .day-meals {
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .meal-cell {
+    padding: 1rem 1.25rem;
+    border-right: 1px solid var(--border);
+  }
+  .meal-cell:last-child { border-right: none; }
+  /* Pokud je jen jedno jídlo, ať zabere celý řádek */
+  .day-meals.single .meal-cell { grid-column: 1 / -1; border-right: none; }
+
+  .meal-num {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; margin-bottom: 0.2rem;
+  }
+  .panel-a .meal-num { color: var(--a-color); }
+  .panel-b .meal-num { color: var(--b-color); }
+
+  .meal-name { font-size: 0.95rem; font-weight: 600; color: var(--text); line-height: 1.3; margin-bottom: 0.2rem; }
+  .meal-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.4; }
+  .meal-price {
+    display: inline-block; margin-top: 0.45rem;
+    font-size: 0.82rem; font-weight: 700;
+    padding: 0.12rem 0.5rem;
+  }
+  .panel-a .meal-price { color: var(--a-color); background: var(--a-light); }
+  .panel-b .meal-price { color: var(--b-color); background: var(--b-light); }
+
+  /* Štítek polévka v ceně */
+  .soup-included {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    margin-top: 0.5rem; margin-left: 0.4rem;
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--soup-color); background: var(--soup-bg);
+    padding: 0.1rem 0.45rem;
+    border: 1px solid #b8ddb8;
+  }
+
+  /* Cena note */
+  .price-note {
+    font-size: 0.83rem; color: var(--muted);
+    padding: 0.6rem 1rem; background: var(--warm);
+    border-left: 3px solid var(--teal);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── PDF ── */
+  .pdf-section {
+    background: var(--warm); border: 1.5px solid var(--border);
+    padding: 1.1rem 1.4rem; margin-top: 1.25rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .pdf-section-text h3 {
+    font-family: 'Source Serif 4', serif; font-size: 0.95rem; font-weight: 700; color: var(--navy);
+  }
+  .pdf-section-text p { font-size: 0.83rem; color: var(--muted); }
+  .btn-pdf {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.65rem 1.3rem; background: var(--navy); color: #fff;
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; border: 2px solid var(--navy); transition: background 0.15s;
+  }
+  .btn-pdf:hover { background: var(--teal); border-color: var(--teal); }
+
+  /* Prázdný týden */
+  .empty-week {
+    padding: 1.75rem 1.5rem; background: #fff; border: 1.5px solid var(--border);
+    font-size: 0.95rem; color: var(--muted); line-height: 1.7;
+  }
+  .empty-week a { color: var(--teal); font-weight: 600; text-decoration: none; }
+
+  /* ── CONTACT STRIP ── */
+  .contact-strip { background: var(--navy); color: #fff; padding: 2.5rem 1.5rem; }
+  .contact-strip-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .contact-strip h3 {
+    font-family: 'Source Serif 4', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.2rem;
+  }
+  .contact-strip p { color: #b8d4d5; font-size: 0.92rem; }
+  .btn-contact {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.8rem 1.5rem; background: var(--teal); color: #fff;
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 0.95rem; font-weight: 600;
+    text-decoration: none; white-space: nowrap; transition: background 0.15s;
+  }
+  .btn-contact:hover { background: var(--teal-light); }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: #101d24; color: #7a9fa5;
+    padding: 2rem 1.5rem; font-size: 0.85rem;
+    border-top: 3px solid var(--teal);
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+  }
+  .footer-inner a { color: #aac5c6; text-decoration: none; }
+  .footer-inner a:hover { color: #fff; }
+
+  /* ── RESPONSIVE ── */
+
+  /* ── HAMBURGER ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; gap: 5px;
+    width: 2.5rem; height: 2.5rem;
+    background: none; border: none; cursor: pointer; padding: 0.25rem;
+    flex-shrink: 0;
+  }
+  .nav-hamburger span {
+    display: block; width: 100%; height: 2px;
+    background: #fff; transition: transform 0.2s, opacity 0.2s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-mobile {
+    display: none; flex-direction: column;
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    display: block; padding: 1rem 1.5rem;
+    color: #d4e8e9; text-decoration: none; font-size: 1.05rem; font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.15s;
+  }
+  .nav-mobile a:hover { background: var(--teal); color: #fff; }
+  .nav-mobile a.nav-cta {
+    background: var(--teal); color: #fff; font-weight: 700;
+    text-align: center; margin: 0.75rem 1.5rem 1rem;
+  }
+  .nav-mobile a.nav-cta:hover { background: var(--teal-light); }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .supplier-tabs { flex-direction: column; }
+    .supplier-tab { max-width: 100%; margin-right: 0; margin-bottom: -2px; }
+    .day-meals { grid-template-columns: 1fr; }
+    .meal-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .meal-cell:last-child { border-bottom: none; }
+    .contact-strip-inner { flex-direction: column; }
+    .pdf-section { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" aria-label="Hlavní navigace">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span>Služby KPŽ</span>
+      <span>Rozvoz obědů</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#objednat-formular">Objednat</a></li>
+      <li><a href="jidelni-listek.html" class="active">Jídelní lístek</a></li>
+      <li><a href="index.html#cena">Kolik mě oběd stojí?</a></li>
+      <li><a href="firmy.html">Pro firmy</a></li>
+      <li><a href="index.html#kontakt" class="nav-cta">Kontakt</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Otevřít menu" aria-expanded="false" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="index.html" onclick="closeMenu()" style="font-weight:700;color:#fff;">← Úvod</a>
+    <a href="index.html#objednat-formular" onclick="closeMenu()">Objednat</a>
+    <a href="jidelni-listek.html" onclick="closeMenu()">Jídelní lístek</a>
+    <a href="index.html#faq" onclick="closeMenu()">Často kladené dotazy</a>
+    <a href="firmy.html" onclick="closeMenu()">Pro firmy</a>
+    <a href="index.html#kontakt" class="nav-cta" onclick="closeMenu()">Kontakt</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Úvod</a> <span>›</span> Jídelní lístek
+    </div>
+    <h1>Jídelní lístek</h1>
+    <p class="page-header-lead">
+      Vyberte si dodavatele a prohlédněte si jeho nabídku na tento týden.
+    </p>
+  </div>
+</header>
+
+<!-- HLAVNÍ OBSAH -->
+<section class="section">
+  <div class="container">
+
+      <div class="info-box" role="note">
+      <span class="info-box-icon" aria-hidden="true">ℹ️</span>
+      <div class="info-box-text">
+        <h3>Jak objednat</h3>
+        <p>
+          Vyberte si jídlo — od každého dodavatele dostanete automaticky jeho polévku, je vždy součástí ceny.
+          <strong>Objednat můžete od více dodavatelů najednou.</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- VÝBĚR TÝDNE -->
+    <div class="week-tabs" role="tablist" aria-label="Výběr týdne">
+      <button class="week-tab active" role="tab" aria-selected="true" onclick="switchWeek(this,'tyden1')">Tento týden</button>
+      <button class="week-tab" role="tab" aria-selected="false" onclick="switchWeek(this,'tyden2')">Příští týden</button>
+    </div>
+
+    <!-- ══════════ TENTO TÝDEN ══════════ -->
+    <div class="menu-week active" id="tyden1" role="tabpanel">
+
+      <p class="price-note">
+        Cena <strong>130 Kč</strong> vč. DPH zahrnuje polévku, hlavní jídlo i dovoz.
+        V obcích s obecní slevou je cena nižší — <a href="index.html#cena" style="color:var(--teal);font-weight:600;">spočítejte si svou cenu</a>.
+      </p>
+
+      <!-- VÝBĚR DODAVATELE -->
+      <div class="supplier-chooser" role="group" aria-label="Výběr dodavatele">
+        <span class="supplier-chooser-label">Vyberte svého dodavatele:</span>
+        <div class="supplier-tabs" role="tablist" aria-label="Dodavatelé">
+          <button
+            class="supplier-tab tab-a active"
+            role="tab" aria-selected="true"
+            onclick="switchSupplier(this, 'panel-a-t1')"
+            aria-controls="panel-a-t1">
+            <span class="supplier-tab-name">Dodavatel A</span>
+            <span class="supplier-tab-desc">např. Jídelna Pohoda — vlastní polévka každý den</span>
+          </button>
+          <button
+            class="supplier-tab tab-b"
+            role="tab" aria-selected="false"
+            onclick="switchSupplier(this, 'panel-b-t1')"
+            aria-controls="panel-b-t1">
+            <span class="supplier-tab-name">Dodavatel B</span>
+            <span class="supplier-tab-desc">např. Restaurace u Nás — vlastní polévka každý den</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PANEL: DODAVATEL A -->
+      <div class="supplier-panel panel-a active" id="panel-a-t1" role="tabpanel">
+        <div class="supplier-header a">
+          <span class="supplier-header-name">Dodavatel A</span>
+          <span class="supplier-header-note">— každé jídlo včetně polévky dodavatele A a dovozu</span>
+        </div>
+        <div class="menu-days" role="list">
+
+          <div class="menu-day" role="listitem">
+            <div class="day-header"><span class="day-name">Pondělí</span><span class="day-date">12. 5. 2025</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Zeleninová s nudlemi</span></div>
+            <div class="day-meals">
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 1</div>
+                <div class="meal-name">Svíčková na smetaně</div>
+                <div class="meal-desc">Houskový knedlík, brusinky</div>
+                
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 2</div>
+                <div class="meal-name">Kuřecí prsa na paprice</div>
+                <div class="meal-desc">Rýže</div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-day" role="listitem">
+            <div class="day-header"><span class="day-name">Úterý</span><span class="day-date">13. 5. 2025</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Rajská s rýží</span></div>
+            <div class="day-meals">
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 1</div>
+                <div class="meal-name">Vepřový guláš</div>
+                <div class="meal-desc">Houskový nebo bramborový knedlík</div>
+                
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 2</div>
+                <div class="meal-name">Zapečené těstoviny s uzeninou</div>
+                <div class="meal-desc">Strouhaný sýr, salát</div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-day" role="listitem">
+            <div class="day-header"><span class="day-name">Středa</span><span class="day-date">14. 5. 2025</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Kuřecí vývar s těstovinami</span></div>
+            <div class="day-meals">
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 1</div>
+                <div class="meal-name">Pečená kachna</div>
+                <div class="meal-desc">Červené zelí, houskový knedlík</div>
+                
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 2</div>
+                <div class="meal-name">Smažený sýr</div>
+                <div class="meal-desc">Tatarská omáčka, vařené brambory</div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-day" role="listitem">
+            <div class="day-header"><span class="day-name">Čtvrtek</span><span class="day-date">15. 5. 2025</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Hrášková s krutony</span></div>
+            <div class="day-meals">
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 1</div>
+                <div class="meal-name">Segedínský guláš</div>
+                <div class="meal-desc">Chléb nebo knedlík</div>
+                
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 2</div>
+                <div class="meal-name">Houbové rizoto</div>
+                <div class="meal-desc">Strouhaný sýr, čerstvá zelenina</div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-day" role="listitem">
+            <div class="day-header"><span class="day-name">Pátek</span><span class="day-date">16. 5. 2025</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Koprovka s vejcem a bramborem</span></div>
+            <div class="day-meals">
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 1</div>
+                <div class="meal-name">Losos na bylinkách</div>
+                <div class="meal-desc">Dušená rýže, citron</div>
+                
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 2</div>
+                <div class="meal-name">Svíčková roštěná</div>
+                <div class="meal-desc">Těstoviny, smetanová omáčka</div>
+                
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /menu-days A -->
+      </div><!-- /panel-a -->
+
+      <!-- PANEL: DODAVATEL B -->
+      <div class="supplier-panel panel-b" id="panel-b-t1" role="tabpanel">
+        <div class="supplier-header b">
+          <span class="supplier-header-name">Dodavatel B</span>
+          <span class="supplier-header-note">— každé jídlo včetně polévky dodavatele B a dovozu</span>
+        </div>
+        <div class="menu-days" role="list">
+
+          <div class="menu-day" role="listitem">
+            <div class="day-header"><span class="day-name">Pondělí</span><span class="day-date">12. 5. 2025</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Hovězí vývar s játrovými knedlíčky</span></div>
+            <div class="day-meals">
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 1</div>
+                <div class="meal-name">Kuřecí řízek</div>
+                <div class="meal-desc">Bramborový salát</div>
+                
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 2</div>
+                <div class="meal-name">Čočka na kyselo</div>
+                <div class="meal-desc">Vařené vejce, kyselá okurka, chléb</div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-day" role="listitem">
+            <div class="day-header"><span class="day-name">Úterý</span><span class="day-date">13. 5. 2025</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Česnečka se sýrem a krutony</span></div>
+            <div class="day-meals">
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 1</div>
+                <div class="meal-name">Vepřová pečeně na kmíně</div>
+                <div class="meal-desc">Zelí, bramborový nebo houskový knedlík</div>
+                
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 2</div>
+                <div class="meal-name">Plněné papriky</div>
+                <div class="meal-desc">Rajčatová omáčka, rýže</div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-day" role="listitem">
+            <div class="day-header"><span class="day-name">Středa</span><span class="day-date">14. 5. 2025</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Hrachová s uzeninou</span></div>
+            <div class="day-meals">
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 1</div>
+                <div class="meal-name">Vepřový závitek se slaninou</div>
+                <div class="meal-desc">Bramborová kaše</div>
+                
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 2</div>
+                <div class="meal-name">Zeleninové kari</div>
+                <div class="meal-desc">Rýže basmati, jogurt</div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-day" role="listitem">
+            <div class="day-header"><span class="day-name">Čtvrtek</span><span class="day-date">15. 5. 2025</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Zeleninový krém s pečivem</span></div>
+            <div class="day-meals">
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 1</div>
+                <div class="meal-name">Kuřecí stehno na česneku</div>
+                <div class="meal-desc">Opékané brambory, okurkový salát</div>
+                
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 2</div>
+                <div class="meal-name">Špenát se sázeným vejcem</div>
+                <div class="meal-desc">Vařené brambory</div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-day" role="listitem">
+            <div class="day-header"><span class="day-name">Pátek</span><span class="day-date">16. 5. 2025</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Bramborová s majoránkou</span></div>
+            <div class="day-meals">
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 1</div>
+                <div class="meal-name">Smažená treska</div>
+                <div class="meal-desc">Bramborová kaše, citron</div>
+                
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">Oběd 2</div>
+                <div class="meal-name">Dušené vepřové s houbami</div>
+                <div class="meal-desc">Těstoviny, petrželka</div>
+                
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /menu-days B -->
+      </div><!-- /panel-b -->
+
+      <!-- PDF -->
+      <div class="pdf-section">
+        <div class="pdf-section-text">
+          <h3>Stáhnout jídelní lístek jako PDF</h3>
+          <p>Oba dodavatelé na jednom listu. Pro tisk nebo uložení.</p>
+        </div>
+        <a href="#" class="btn-pdf" aria-label="Stáhnout jídelní lístek jako PDF">⬇ Stáhnout PDF</a>
+      </div>
+
+    </div><!-- /tyden1 -->
+
+    <!-- ══════════ PŘÍŠTÍ TÝDEN ══════════ -->
+    <div class="menu-week" id="tyden2" role="tabpanel">
+      <div class="empty-week" role="note">
+        ℹ️ Jídelní lístek na příští týden bude zveřejněn ve čtvrtek.<br><br>
+        Mezitím nás kontaktujte: <a href="tel:778095906">778 095 906</a> nebo <a href="mailto:obedy@kvalitnipodzimzivota.cz">obedy@kvalitnipodzimzivota.cz</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- KONTAKTNÍ PRUH -->
+<div class="contact-strip">
+  <div class="contact-strip-inner">
+    <div>
+      <h3>Chcete se objednat?</h3>
+      <p>Zavolejte nebo napište Jaroslavě Kubáskové. Objednáváme i telefonicky.</p>
+    </div>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <a href="tel:778095906" class="btn-contact">📞 778 095 906</a>
+      <a href="index.html#objednat-formular" class="btn-contact">📝 Online formulář</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <strong style="color:#aac5c6;">Služby KPŽ s.r.o.</strong><br>
+      <a href="index.html">← Zpět na úvod</a>
+    </div>
+    <div>
+      <a href="mailto:obedy@kvalitnipodzimzivota.cz">obedy@kvalitnipodzimzivota.cz</a> ·
+      <a href="tel:778095906">778 095 906</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Přepínání týdnů
+  function switchWeek(btn, weekId) {
+    document.querySelectorAll('.week-tab').forEach(t => {
+      t.classList.remove('active'); t.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.menu-week').forEach(w => w.classList.remove('active'));
+    btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');
+    document.getElementById(weekId).classList.add('active');
+  }
+
+  // Přepínání dodavatelů — funguje pro každý týden samostatně
+  function switchSupplier(btn, panelId) {
+    // Najdi rodičovský .menu-week
+    const week = btn.closest('.menu-week');
+    // Deaktivuj všechny supplier taby v tomto týdnu
+    week.querySelectorAll('.supplier-tab').forEach(t => {
+      t.classList.remove('active'); t.setAttribute('aria-selected', 'false');
+    });
+    // Schovej všechny supplier panely v tomto týdnu
+    week.querySelectorAll('.supplier-panel').forEach(p => p.classList.remove('active'));
+    // Aktivuj vybraný
+    btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');
+    document.getElementById(panelId).classList.add('active');
+  }
+
+  function toggleMenu(btn) {
+    const menu = document.getElementById('nav-mobile');
+    const open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+  }
+  function closeMenu() {
+    const menu = document.getElementById('nav-mobile');
+    const btn = document.querySelector('.nav-hamburger');
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+</script>
+</body>
+</html>

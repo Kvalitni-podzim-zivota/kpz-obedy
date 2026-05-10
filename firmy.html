@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rozvoz obědů pro firmy | Služby KPŽ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:  #1a2e3b;
+    --teal:  #2a6b6e;
+    --teal-light: #3a8d91;
+    --warm:  #f5f0e8;
+    --cream: #fdfbf7;
+    --border:#c8bfaa;
+    --text:  #1e1e1e;
+    --muted: #5a5a5a;
+    --green: #2d6a4f;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 18px; line-height: 1.65;
+    color: var(--text); background: var(--cream);
+  }
+
+  /* NAV */
+  .site-nav {
+    background: var(--navy); position: sticky; top: 0; z-index: 100;
+    border-bottom: 3px solid var(--teal);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 1.5rem;
+  }
+  .nav-logo {
+    display: flex; flex-direction: column;
+    padding: 0.75rem 0; text-decoration: none;
+  }
+  .nav-logo span:first-child {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1.2;
+  }
+  .nav-logo span:last-child {
+    font-size: 0.75rem; color: #aac5c6; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .nav-links { display: flex; list-style: none; gap: 0; }
+  .nav-links a {
+    display: block; padding: 1.1rem 1rem;
+    color: #d4e8e9; text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0.03em; border-left: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-links a:hover { background: var(--teal); color: #fff; }
+  .nav-links a.active { background: var(--teal); color: #fff; }
+  .nav-links a.nav-cta { background: var(--teal); color: #fff; font-weight: 600; }
+  .nav-links a.nav-cta:hover { background: var(--teal-light); }
+
+  /* PAGE HEADER */
+  .page-header {
+    background: var(--navy); padding: 3rem 1.5rem 2.5rem;
+    border-bottom: 4px solid var(--teal);
+  }
+  .page-header-inner { max-width: 1100px; margin: 0 auto; }
+  .breadcrumb {
+    font-size: 0.8rem; color: #7ecfd4; margin-bottom: 1rem;
+    display: flex; gap: 0.5rem; align-items: center;
+  }
+  .breadcrumb a { color: #7ecfd4; text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .page-header h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 0.75rem;
+  }
+  .page-header h1 em { font-style: normal; color: #7ecfd4; }
+  .page-header-lead { color: #b8d4d5; font-size: 1.05rem; max-width: 600px; }
+
+  /* SECTIONS */
+  .section { padding: 3rem 1.5rem; }
+  .section-alt { background: var(--warm); }
+  .section-dark { background: var(--navy); color: #fff; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem;
+  }
+  .section-dark .section-label { color: #7ecfd4; }
+  h2 {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 700; margin-bottom: 0.5rem;
+  }
+  .section-intro { font-size: 1.05rem; color: var(--muted); max-width: 600px; margin-bottom: 2rem; }
+  .section-dark .section-intro { color: #aac5c6; }
+
+  /* FEATURE GRID */
+  .features {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5px; background: var(--border); border: 1.5px solid var(--border);
+    margin-top: 2rem;
+  }
+  .feature-card { background: #fff; padding: 2rem 1.75rem; }
+  .feature-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .feature-card h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--navy);
+  }
+  .feature-card p { font-size: 0.95rem; color: var(--muted); }
+  .feature-card.highlight { background: var(--teal); }
+  .feature-card.highlight h3 { color: #fff; }
+  .feature-card.highlight p { color: #c4e8ea; }
+
+  /* NAHRADNI PLNENI */
+  .np-box {
+    background: #fff; border: 2px solid var(--green);
+    padding: 2.5rem; margin-top: 2rem;
+  }
+  .np-box-header {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+  }
+  .np-badge {
+    background: var(--green); color: #fff;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.35rem 0.8rem; white-space: nowrap;
+  }
+  .np-box h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.3rem; font-weight: 700; color: var(--navy);
+  }
+  .np-body { font-size: 1rem; color: var(--text); }
+  .np-body p { margin-bottom: 1rem; }
+  .np-body p:last-child { margin-bottom: 0; color: var(--muted); font-size: 0.9rem; }
+  .np-highlight {
+    background: #f0f8f0; border-left: 4px solid var(--green);
+    padding: 1rem 1.25rem; margin: 1.25rem 0;
+    font-size: 0.95rem; color: var(--text);
+  }
+
+  /* CONDITION TABLE */
+  .cond-table {
+    width: 100%; border-collapse: collapse;
+    margin-top: 1.5rem; font-size: 0.95rem;
+  }
+  .cond-table th {
+    background: var(--navy); color: #fff;
+    padding: 0.75rem 1rem; text-align: left;
+    font-weight: 600; font-size: 0.85rem; letter-spacing: 0.04em;
+  }
+  .cond-table td {
+    padding: 0.85rem 1rem; border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .cond-table tr:last-child td { border-bottom: none; }
+  .cond-table tr:nth-child(even) td { background: var(--warm); }
+  .cond-ok { color: var(--green); font-weight: 700; }
+  .cond-note { font-size: 0.85rem; color: var(--muted); }
+
+  /* CTA BOX */
+  .cta-box {
+    background: var(--teal); color: #fff;
+    padding: 2.5rem; margin-top: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem; flex-wrap: wrap;
+  }
+  .cta-box h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem;
+  }
+  .cta-box p { color: #c4e8ea; font-size: 0.95rem; }
+  .btn-white {
+    display: inline-block; padding: 0.9rem 1.75rem;
+    background: #fff; color: var(--teal);
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 1rem; font-weight: 700;
+    text-decoration: none; border: 2px solid #fff;
+    white-space: nowrap; transition: background 0.15s, color 0.15s;
+  }
+  .btn-white:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5px; background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.2); margin-top: 2rem;
+  }
+  .contact-card { background: rgba(255,255,255,0.07); padding: 2rem 1.75rem; }
+  .contact-card h3 {
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #7ecfd4; margin-bottom: 1rem; font-weight: 600;
+  }
+  .contact-card .name {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem;
+  }
+  .contact-item { margin-bottom: 0.5rem; }
+  .contact-item a {
+    color: #b8d4d5; text-decoration: none; font-size: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .contact-item a:hover { color: #fff; }
+
+  .site-footer {
+    background: #101d24; color: #7a9fa5;
+    padding: 2rem 1.5rem; font-size: 0.85rem;
+    border-top: 3px solid var(--teal);
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+  }
+  .footer-inner a { color: #aac5c6; text-decoration: none; }
+  .footer-inner a:hover { color: #fff; }
+
+
+  /* ── HAMBURGER ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; gap: 5px;
+    width: 2.5rem; height: 2.5rem;
+    background: none; border: none; cursor: pointer; padding: 0.25rem;
+    flex-shrink: 0;
+  }
+  .nav-hamburger span {
+    display: block; width: 100%; height: 2px;
+    background: #fff; transition: transform 0.2s, opacity 0.2s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-mobile {
+    display: none; flex-direction: column;
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    display: block; padding: 1rem 1.5rem;
+    color: #d4e8e9; text-decoration: none; font-size: 1.05rem; font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.15s;
+  }
+  .nav-mobile a:hover { background: var(--teal); color: #fff; }
+  .nav-mobile a.nav-cta {
+    background: var(--teal); color: #fff; font-weight: 700;
+    text-align: center; margin: 0.75rem 1.5rem 1rem;
+  }
+  .nav-mobile a.nav-cta:hover { background: var(--teal-light); }
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .cta-box { flex-direction: column; }
+    .features { grid-template-columns: 1fr; }
+    .np-box { padding: 1.5rem; }
+    .np-box-header { flex-direction: column; align-items: flex-start; }
+    .cond-table { font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span>Služby KPŽ</span>
+      <span>Rozvoz obědů</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#objednat">Objednat</a></li>
+      <li><a href="jidelni-listek.html">Jídelní lístek</a></li>
+      <li><a href="index.html#cena">Kolik mě oběd stojí?</a></li>
+      <li><a href="firmy.html" class="active">Pro firmy</a></li>
+      <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Otevřít menu" aria-expanded="false" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="index.html" onclick="closeMenu()" style="font-weight:700;color:#fff;">← Úvod</a>
+    <a href="index.html#objednat-formular" onclick="closeMenu()">Objednat</a>
+    <a href="jidelni-listek.html" onclick="closeMenu()">Jídelní lístek</a>
+    <a href="index.html#faq" onclick="closeMenu()">Často kladené dotazy</a>
+    <a href="firmy.html" onclick="closeMenu()">Pro firmy</a>
+    <a href="#kontakt" class="nav-cta" onclick="closeMenu()">Kontakt</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Úvod</a> <span>›</span> Pro firmy
+    </div>
+    <h1>Obědy pro <em>vaše zaměstnance.</em></h1>
+    <p class="page-header-lead">
+      Rozvozíme teplé obědy přímo do firem. Žádné kantýny, žádná logistika z vaší strany. Stačí zavolat.
+    </p>
+  </div>
+</header>
+
+<!-- PŘEHLED -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">Co nabízíme firmám</p>
+    <h2>Rozvoz obědů do firmy</h2>
+    <p class="section-intro">
+      Zajistíme pravidelný rozvoz obědů pro váš tým. Pracovní dny, teplé jídlo, přímý kontakt.
+    </p>
+    <div class="features" role="list">
+      <div class="feature-card" role="listitem">
+        <span class="feature-icon" aria-hidden="true">🏢</span>
+        <h3>Rozvoz až do firmy</h3>
+        <p>Obědy dovezeme na vaši adresu každý pracovní den v době 9:00–13:00.</p>
+      </div>
+      <div class="feature-card highlight" role="listitem">
+        <span class="feature-icon" aria-hidden="true">👥</span>
+        <h3>Od 10 jídel na adresu</h3>
+        <p>Minimální odběr je 10 obědů na jedno doručovací místo. Dopravné řešíme individuálně.</p>
+      </div>
+      <div class="feature-card" role="listitem">
+        <span class="feature-icon" aria-hidden="true">📋</span>
+        <h3>Jídelní lístek každý týden</h3>
+        <p>Zaměstnanci si vybírají z nabídky na příští týden. Posíláme e-mailem nebo předáváme při rozvozu.</p>
+      </div>
+      <div class="feature-card" role="listitem">
+        <span class="feature-icon" aria-hidden="true">🧾</span>
+        <h3>Pravidelné vyúčtování</h3>
+        <p>Platba převodem, vyúčtování jednou týdně. Bez zbytečné administrativy.</p>
+      </div>
+      <div class="feature-card" role="listitem">
+        <span class="feature-icon" aria-hidden="true">💬</span>
+        <h3>Přímý kontakt</h3>
+        <p>Komunikujete přímo s námi, ne přes systémy. Změny i výjimky řešíme osobně.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PODMÍNKY -->
+<section class="section section-alt">
+  <div class="container">
+    <p class="section-label">Podmínky spolupráce</p>
+    <h2>Jak to funguje?</h2>
+    <table class="cond-table" aria-label="Podmínky firemního rozvozu">
+      <thead>
+        <tr>
+          <th>Co</th>
+          <th>Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Minimální odběr</strong></td>
+          <td>10 jídel na stejné doručovací adrese</td>
+        </tr>
+        <tr>
+          <td><strong>Cena za oběd</strong></td>
+          <td>130 Kč vč. DPH<br><span class="cond-note">Pro větší odběry nebo opakované objednávky se cena dohodne individuálně.</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dopravné</strong></td>
+          <td>Individuálně podle lokality a objemu<br><span class="cond-note">Konkrétní podmínky sdělíme při prvním kontaktu.</span></td>
+        </tr>
+        <tr>
+          <td><strong>Rozvoz</strong></td>
+          <td>Pracovní dny, 9:00–13:00</td>
+        </tr>
+        <tr>
+          <td><strong>Objednávky</strong></td>
+          <td>Na příští týden, do konce aktuálního pracovního týdne</td>
+        </tr>
+        <tr>
+          <td><strong>Platba</strong></td>
+          <td>Bankovní převod, vyúčtování každý týden <span class="cond-ok">✓</span></td>
+        </tr>
+        <tr>
+          <td><strong>Jídelní lístek</strong></td>
+          <td>E-mailem každý týden; zaměstnanci si vybírají sami</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- NÁHRADNÍ PLNĚNÍ -->
+<section class="section" id="nahradni-plneni">
+  <div class="container">
+    <p class="section-label">Zaměstnávání osob se zdravotním postižením</p>
+    <h2>Náhradní plnění</h2>
+    <p class="section-intro">
+      Jsme registrovanou organizací – vaše odběry u nás mohou splnit povinnost náhradního plnění.
+    </p>
+
+    <div class="np-box" role="note" aria-label="Informace o náhradním plnění">
+      <div class="np-box-header">
+        <span class="np-badge">§ 81 zákona č. 435/2004 Sb.</span>
+        <h3>Co je náhradní plnění?</h3>
+      </div>
+      <div class="np-body">
+        <p>
+          Zaměstnavatelé s více než 25 zaměstnanci mají ze zákona povinnost zaměstnávat osoby se zdravotním postižením (OZP), nebo tuto povinnost splnit jiným způsobem – tzv. náhradním plněním. Jednou z možností je odebírání výrobků nebo služeb od firem, které OZP zaměstnávají.
+        </p>
+        <div class="np-highlight">
+          <strong>Qualitas, z.ú.</strong> je evidovaným poskytovatelem náhradního plnění. Odběrem obědů od nás plníte zákonnou povinnost a zároveň podporujete smysluplnou práci.
+        </div>
+        <p>
+          Podrobnosti o náhradním plnění a aktuální evidenci dodavatelů najdete v informačním systému MPSV
+          (<a href="https://www.mpsv.cz" target="_blank" rel="noopener noreferrer">mpsv.cz</a>).
+          Při poptávce vám zašleme veškeré potřebné podklady pro evidenci.
+        </p>
+        <p>
+          Upozornění: Podmínky náhradního plnění se mohou měnit. Vždy doporučujeme ověřit aktuální stav s vaším právním nebo mzdovým oddělením.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-box" role="complementary" aria-label="Výzva k akci">
+      <div>
+        <h3>Máte zájem o rozvoz pro firmu?</h3>
+        <p>Napište nebo zavolejte – domluvíme podmínky přímo a bez zbytečných formulářů.</p>
+      </div>
+      <a href="#kontakt" class="btn-white">Kontaktujte nás</a>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="section section-dark" id="kontakt">
+  <div class="container">
+    <p class="section-label">Firemní poptávky</p>
+    <h2 style="color:#fff;">Kontakt pro firmy</h2>
+    <p class="section-intro">Obraťte se na nás pro nezávaznou poptávku nebo dotazy k podmínkám spolupráce.</p>
+    <div class="contact-grid" role="list">
+      <div class="contact-card" role="listitem">
+        <h3>Objednávky a poptávky</h3>
+        <div class="name">Jaroslava Kubásková</div>
+        <div class="contact-item"><a href="tel:778095906">📞 778 095 906</a></div>
+        <div class="contact-item"><a href="mailto:obedy@kvalitnipodzimzivota.cz">✉️ obedy@kvalitnipodzimzivota.cz</a></div>
+      </div>
+      <div class="contact-card" role="listitem">
+        <h3>Vyúčtování a náhradní plnění</h3>
+        <div class="name">Šárka Radilová</div>
+        <div class="contact-item"><a href="tel:778095645">📞 778 095 645</a></div>
+        <div class="contact-item"><a href="mailto:administrativa.kpz@email.cz">✉️ administrativa.kpz@email.cz</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <strong style="color:#aac5c6;">Služby KPŽ s.r.o.</strong><br>
+      <a href="index.html">← Zpět na úvod</a> ·
+      <a href="jidelni-listek.html">Jídelní lístek</a>
+    </div>
+    <div>
+      <a href="mailto:obedy@kvalitnipodzimzivota.cz">obedy@kvalitnipodzimzivota.cz</a> ·
+      <a href="tel:778095906">778 095 906</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(btn) {
+    const menu = document.getElementById('nav-mobile');
+    const open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+  }
+  function closeMenu() {
+    const menu = document.getElementById('nav-mobile');
+    const btn = document.querySelector('.nav-hamburger');
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+</script>
+
+</body>
+</html>
