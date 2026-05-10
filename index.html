@@ -173,13 +173,18 @@
 
   /* ── FEATURE BLOCKS ── */
   .features {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    display: flex;
     gap: 1.5px; background: var(--border);
     border: 1.5px solid var(--border);
     margin-top: 2rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
   }
   .feature-card {
     background: #fff; padding: 2rem 1.75rem;
+    min-width: 210px; flex: 1;
+    scroll-snap-align: start;
   }
   .feature-icon {
     font-size: 2rem; margin-bottom: 1rem; display: block;
@@ -509,7 +514,7 @@
     .price-calc { padding: 1.5rem; }
     .section { padding: 2.5rem 1.25rem; }
     .contact-grid { grid-template-columns: 1fr; }
-    .features { grid-template-columns: 1fr; }
+    .feature-card { min-width: 75vw; }
   }
 </style>
 </head>
@@ -525,7 +530,7 @@
     <ul class="nav-links" role="list">
       <li><a href="#objednat">Objednat</a></li>
       <li><a href="jidelni-listek.html">Jídelní lístek</a></li>
-      <li><a href="#cena">Kolik mě oběd stojí?</a></li>
+      <li><a href="#faq">Často kladené dotazy</a></li>
       <li><a href="firmy.html">Pro firmy</a></li>
       <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
     </ul>
