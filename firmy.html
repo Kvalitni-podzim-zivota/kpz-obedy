@@ -84,7 +84,7 @@
   .section { padding: 3rem 1.5rem; }
   .section-alt { background: var(--warm); }
   .section-dark { background: var(--navy); color: #fff; }
-  .container { max-width: 1100px; margin: 0 auto; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
   .section-label {
     font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
     text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem;
@@ -100,11 +100,18 @@
 
   /* FEATURE GRID */
   .features {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    display: flex;
     gap: 1.5px; background: var(--border); border: 1.5px solid var(--border);
     margin-top: 2rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
   }
-  .feature-card { background: #fff; padding: 2rem 1.75rem; }
+  .feature-card {
+    background: #fff; padding: 2rem 1.75rem;
+    min-width: 210px; flex: 1;
+    scroll-snap-align: start;
+  }
   .feature-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
   .feature-card h3 {
     font-family: 'Source Serif 4', serif;
@@ -253,7 +260,7 @@
     .nav-links { display: none; }
     .nav-hamburger { display: flex; }
     .cta-box { flex-direction: column; }
-    .features { grid-template-columns: 1fr; }
+    .feature-card { min-width: 75vw; }
     .np-box { padding: 1.5rem; }
     .np-box-header { flex-direction: column; align-items: flex-start; }
     .cond-table { font-size: 0.85rem; }
@@ -269,9 +276,9 @@
       <span>Rozvoz obědů</span>
     </a>
     <ul class="nav-links">
-      <li><a href="index.html#objednat">Objednat</a></li>
+      <li><a href="index.html#objednat-formular">Objednat</a></li>
       <li><a href="jidelni-listek.html">Jídelní lístek</a></li>
-      <li><a href="index.html#cena">Kolik mě oběd stojí?</a></li>
+      <li><a href="index.html#faq">Často kladené dotazy</a></li>
       <li><a href="firmy.html" class="active">Pro firmy</a></li>
       <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
     </ul>
@@ -404,7 +411,7 @@
           Zaměstnavatelé s více než 25 zaměstnanci mají ze zákona povinnost zaměstnávat osoby se zdravotním postižením (OZP), nebo tuto povinnost splnit jiným způsobem – tzv. náhradním plněním. Jednou z možností je odebírání výrobků nebo služeb od firem, které OZP zaměstnávají.
         </p>
         <div class="np-highlight">
-          <strong>Qualitas, z.ú.</strong> je evidovaným poskytovatelem náhradního plnění. Odběrem obědů od nás plníte zákonnou povinnost a zároveň podporujete smysluplnou práci.
+          <strong>Kvalitní podzim života z.ú.</strong> je evidovaným poskytovatelem náhradního plnění. Odběrem obědů od nás plníte zákonnou povinnost a zároveň podporujete smysluplnou práci.
         </div>
         <p>
           Podrobnosti o náhradním plnění a aktuální evidenci dodavatelů najdete v informačním systému MPSV
