@@ -1,22 +1,43 @@
 // Kalkulačka ceny
+// doprava: 0 = zdarma, 11 = 11 Kč/oběd, 35 = 35 Kč za 1. oběd + 10 Kč za každý další (výpočet pro 1 oběd/den)
 const ceny = {
-  vestec:      { jidlo: 70,  doprava: 0 },
-  dobrejovice: { jidlo: 105, doprava: 0 },
-  jesenice:    { jidlo: 130, doprava: 11 },
-  ohrobec:     { jidlo: 130, doprava: 11 },
-  libuse:      { jidlo: 130, doprava: 11 },
-  pisnice:     { jidlo: 130, doprava: 11 },
-  jina:        { jidlo: 130, doprava: 0 },
+  vestec:        { jidlo: 75,  doprava: 0 },
+  libuse:        { jidlo: 135, doprava: 11 },
+  pisnice:       { jidlo: 135, doprava: 35 },
+  jesenice:      { jidlo: 135, doprava: 11 },
+  dolni_brezany: { jidlo: 135, doprava: 0 },
+  ohrobec:       { jidlo: 135, doprava: 11 },
+  dobrejovice:   { jidlo: 105, doprava: 0 },
+  zvole:         { jidlo: 135, doprava: 0 },
+  brezova:       { jidlo: 135, doprava: 35 },
+  radejovice:    { jidlo: 135, doprava: 0 },
+  velke_prilepe: { jidlo: 135, doprava: 0 },
+  statenice:     { jidlo: 135, doprava: 0 },
+  holubice:      { jidlo: 135, doprava: 0 },
+  tursko:        { jidlo: 135, doprava: 0 },
+  noutonice:     { jidlo: 135, doprava: 0 },
+  lysolaje:      { jidlo: 135, doprava: 35 },
+  jina:          { jidlo: 135, doprava: 35 },
 };
 
 const poznamky = {
-  vestec:      'Cena po obecní slevě. Sleva není nároková a může se změnit.',
-  dobrejovice: 'Cena po obecní slevě. Sleva není nároková.',
-  jesenice:    'Základní cena + dopravné 11 Kč / oběd.',
-  ohrobec:     'Základní cena + dopravné 11 Kč / oběd.',
-  libuse:      'Základní cena + dopravné 11 Kč / oběd.',
-  pisnice:     'Základní cena + dopravné 11 Kč / oběd.',
-  jina:        'Základní cena bez dopravného. Upřesnění při objednávce.',
+  vestec:        'Cena po obecní slevě (základní cena 135 Kč). Sleva není nároková a může se změnit.',
+  libuse:        '135 Kč oběd + 11 Kč dopravné / oběd.',
+  pisnice:       '135 Kč oběd + 35 Kč dopravné (1. oběd). Každý další na stejnou adresu: 10 Kč.',
+  jesenice:      '135 Kč oběd + 11 Kč dopravné / oběd.',
+  dolni_brezany: '135 Kč oběd, dopravné zdarma.',
+  ohrobec:       '135 Kč oběd + 11 Kč dopravné / oběd.',
+  dobrejovice:   'Cena po obecní slevě (základní cena 135 Kč). Sleva není nároková a může se změnit.',
+  zvole:         '135 Kč oběd, dopravné zdarma.',
+  brezova:       '135 Kč oběd + 35 Kč dopravné (1. oběd). Každý další na stejnou adresu: 10 Kč.',
+  radejovice:    '135 Kč oběd, dopravné zdarma.',
+  velke_prilepe: '135 Kč oběd, dopravné zdarma.',
+  statenice:     '135 Kč oběd, dopravné zdarma.',
+  holubice:      '135 Kč oběd, dopravné zdarma.',
+  tursko:        '135 Kč oběd, dopravné zdarma.',
+  noutonice:     '135 Kč oběd, dopravné zdarma.',
+  lysolaje:      '135 Kč oběd + 35 Kč dopravné (1. oběd). Každý další na stejnou adresu: 10 Kč.',
+  jina:          '135 Kč oběd + dopravné. Upřesnění při objednávce.',
 };
 
 function spocitej() {
@@ -32,6 +53,7 @@ function spocitej() {
   }
 
   const c = ceny[obec];
+  // Pro doprava=35: výpočet předpokládá 1 oběd na adresu denně
   const celkem = (c.jidlo + c.doprava) * pocet;
   const jedenObejd = c.jidlo + c.doprava;
 

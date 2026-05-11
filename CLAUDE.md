@@ -24,8 +24,10 @@ All three pages share the same design system defined inline in `<style>` blocks:
 
 - Operated by **Služby KPŽ s.r.o.**, subsidiary of non-profit **Kvalitní podzim života z.ú.**
 - Two meal suppliers — each has own soup; customers can order from both simultaneously
-- Delivery areas: Vestec (70 Kč), Dobřejovice (105 Kč), Jesenice / Ohrobec / Libuš / Písnice (130 Kč + 11 Kč delivery)
-- Base price 130 Kč incl. VAT, soup and delivery always included
+- Delivery areas: Vestec, Praha–Libuš, Praha–Písnice, Jesenice (incl. Zdiměřice, Osnice, Kocanda), Dolní Břežany (incl. Lhota, Zálepy), Ohrobec, Dobřejovice, Zvole, Březová–Oleško, Radějovice, Velké Přílepy, Statenice–Černý Vůl, Holubice–Kozinec, Tursko, Noutonice–Lichoceves, Lysolaje
+- Base price 135 Kč incl. VAT, soup always included
+- Delivery fees: **free** for Vestec, Dolní Břežany+spád., Velké Přílepy, Holubice–Kozinec, Tursko, Dobřejovice, Statenice–Černý Vůl, Radějovice, Zvole, Noutonice–Lichoceves; **11 Kč/lunch** for Praha–Libuš, Jesenice+spád., Ohrobec; **35 Kč (1st lunch) + 10 Kč (each additional to same address)** for Praha–Písnice, Březová–Oleško, Lysolaje, and other areas
+- Municipality discounts (not guaranteed — depend on municipality conditions, may change): Vestec 75 Kč/lunch (discount 95 Kč = 35 Kč delivery + 60 Kč off meal); Dobřejovice 105 Kč/lunch (discount 65 Kč = 35 Kč delivery + 30 Kč off meal)
 - Orders for **next week**, placed by end of current working week
 - Contact for orders: Jaroslava Kubásková, 778 095 906, obedy@kvalitnipodzimzivota.cz
 - Contact for billing: Šárka Radilová, 778 095 645, administrativa@kvalitnipodzimzivota.cz
