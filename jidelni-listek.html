@@ -82,8 +82,8 @@
     <div class="menu-week active" id="tyden1" role="tabpanel">
 
       <p class="price-note">
-        Cena <strong>130 Kč</strong> vč. DPH zahrnuje polévku, hlavní jídlo i dovoz.
-        V obcích s obecní slevou je cena nižší — <a href="index.html#cena" style="color:var(--teal);font-weight:600;">spočítejte si svou cenu</a>.
+        Cena obědu je <strong>135 Kč</strong> vč. DPH a zahrnuje polévku i hlavní jídlo.
+        Dopravné závisí na oblasti — <a href="index.html#cena" style="color:var(--teal);font-weight:600;">spočítejte si svou cenu</a>.
       </p>
 
       <!-- VÝBĚR DODAVATELE -->
@@ -95,230 +95,374 @@
             role="tab" aria-selected="true"
             onclick="switchSupplier(this, 'panel-a-t1')"
             aria-controls="panel-a-t1">
-            <span class="supplier-tab-name">Dodavatel A</span>
-            <span class="supplier-tab-desc">např. Jídelna Pohoda — vlastní polévka každý den</span>
+            <span class="supplier-tab-name">Modletice</span>
+            <span class="supplier-tab-desc">Dovoz jídel Modletice — vlastní polévka každý den</span>
           </button>
           <button
             class="supplier-tab tab-b"
             role="tab" aria-selected="false"
             onclick="switchSupplier(this, 'panel-b-t1')"
             aria-controls="panel-b-t1">
-            <span class="supplier-tab-name">Dodavatel B</span>
-            <span class="supplier-tab-desc">např. Restaurace u Nás — vlastní polévka každý den</span>
+            <span class="supplier-tab-name">Štěchovický Maják</span>
+            <span class="supplier-tab-desc">Restaurace Štěchovický Maják — vlastní polévka každý den</span>
           </button>
         </div>
       </div>
 
-      <!-- PANEL: DODAVATEL A -->
+      <!-- PANEL: MODLETICE -->
       <div class="supplier-panel panel-a active" id="panel-a-t1" role="tabpanel">
         <div class="supplier-header a">
-          <span class="supplier-header-name">Dodavatel A</span>
-          <span class="supplier-header-note">— každé jídlo včetně polévky dodavatele A a dovozu</span>
+          <span class="supplier-header-name">Modletice</span>
+          <span class="supplier-header-note">— každé jídlo včetně polévky Modletice a dovozu</span>
         </div>
         <div class="menu-days" role="list">
 
           <div class="menu-day" role="listitem">
-            <div class="day-header"><span class="day-name">Pondělí</span><span class="day-date">12. 5. 2025</span></div>
-            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Zeleninová s nudlemi</span></div>
+            <div class="day-header"><span class="day-name">Pondělí</span><span class="day-date">11. 5. 2026</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Hovězí vývar se zeleninou s nudlemi</span></div>
             <div class="day-meals">
               <div class="meal-cell">
-                <div class="meal-num">Oběd 1</div>
-                <div class="meal-name">Svíčková na smetaně</div>
-                <div class="meal-desc">Houskový knedlík, brusinky</div>
-                
+                <div class="meal-num">A · 120 g</div>
+                <div class="meal-name">Grilované kuřecí prso, pikantní indická čočka na kari s kokosovým mlékem</div>
               </div>
               <div class="meal-cell">
-                <div class="meal-num">Oběd 2</div>
-                <div class="meal-name">Kuřecí prsa na paprice</div>
-                <div class="meal-desc">Rýže</div>
-                
+                <div class="meal-num">B · 120 g</div>
+                <div class="meal-name">Hovězí kostky na zeleném pepři se smetanou, jasmínová rýže</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">C · 220 g</div>
+                <div class="meal-name">Konfitované kuřecí stehýnko na bylinkách, mačkané brambory s máslem (bezlepkové)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">D · 300 g</div>
+                <div class="meal-name">Zeleninový salát, smažené sezamové kuřecí nugetky, dressing</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">E · 400 g</div>
+                <div class="meal-name">Tortilly s kuřecím grilovaným masem, slaninou a ementálem, zelenina, dressing</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">F · 120 g</div>
+                <div class="meal-name">Pečená vepřová panenka, krémové houbové italské rizoto s parmazánem (bezlepkové)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">G · 300 g</div>
+                <div class="meal-name">Krémové houbové italské rizoto s parmazánem (bezlepkové)</div>
               </div>
             </div>
           </div>
 
           <div class="menu-day" role="listitem">
-            <div class="day-header"><span class="day-name">Úterý</span><span class="day-date">13. 5. 2025</span></div>
-            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Rajská s rýží</span></div>
+            <div class="day-header"><span class="day-name">Úterý</span><span class="day-date">12. 5. 2026</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Tomatová polévka s bazalkou a těstovinovou rýží</span></div>
             <div class="day-meals">
               <div class="meal-cell">
-                <div class="meal-num">Oběd 1</div>
-                <div class="meal-name">Vepřový guláš</div>
-                <div class="meal-desc">Houskový nebo bramborový knedlík</div>
-                
+                <div class="meal-num">A · 120 g</div>
+                <div class="meal-name">Kuřecí nudličky na sweet chilli, sezam, asijská zeleninová směs, jasmínová rýže (bezlepkové)</div>
               </div>
               <div class="meal-cell">
-                <div class="meal-num">Oběd 2</div>
-                <div class="meal-name">Zapečené těstoviny s uzeninou</div>
-                <div class="meal-desc">Strouhaný sýr, salát</div>
-                
+                <div class="meal-num">B · 120 g</div>
+                <div class="meal-name">Hovězí vařené, míchaná zelenina na másle (baby karotka, hrášek, kukuřice), brambory vařené (bezlepkové)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">C · 120 g</div>
+                <div class="meal-name">Vepřové nudličky Stroganoff (žampiony, okurky, šunka, smetana), těstoviny</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">D · 300 g</div>
+                <div class="meal-name">Zeleninový salát BBQ Chicken (grilované kuře, slanina, kukuřice, čedar, BBQ mojo-dressing)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">E · 400 g</div>
+                <div class="meal-name">Zeleninový salát s přírodními kuřecími řízečky v parmazánu, sweet omáčka, česnekový dip (bezlepkové)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">F · 300 g</div>
+                <div class="meal-name">Tagliatelle s pórkem a gorgonzolou na smetaně a česneku s pečenou panenkou</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">G · 250 g</div>
+                <div class="meal-name">Dušená zelenina na másle, brambory vařené s máslem a pažitkou (veggie)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">H · 300 g</div>
+                <div class="meal-name">Tagliatelle s pórkem a gorgonzolou na smetaně a česneku (veggie)</div>
               </div>
             </div>
           </div>
 
           <div class="menu-day" role="listitem">
-            <div class="day-header"><span class="day-name">Středa</span><span class="day-date">14. 5. 2025</span></div>
-            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Kuřecí vývar s těstovinami</span></div>
+            <div class="day-header"><span class="day-name">Středa</span><span class="day-date">13. 5. 2026</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Kuřecí uzená polévka s bramborem a kroupami</span></div>
             <div class="day-meals">
               <div class="meal-cell">
-                <div class="meal-num">Oběd 1</div>
-                <div class="meal-name">Pečená kachna</div>
-                <div class="meal-desc">Červené zelí, houskový knedlík</div>
-                
+                <div class="meal-num">A · 200 g</div>
+                <div class="meal-name">Maminčino kuře (žampiony, játra, slanina, cibule), těstoviny penne</div>
               </div>
               <div class="meal-cell">
-                <div class="meal-num">Oběd 2</div>
-                <div class="meal-name">Smažený sýr</div>
-                <div class="meal-desc">Tatarská omáčka, vařené brambory</div>
-                
+                <div class="meal-num">B · 140 g</div>
+                <div class="meal-name">Kuřecí výpečky na česneku, špenát, bramborové knedlíky</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">C · 120 g</div>
+                <div class="meal-name">Smažený kuřecí řízek v pikantní sezamové strouhance, brambory vařené, dip</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">D · 300 g</div>
+                <div class="meal-name">Zeleninový salát s variací sýrů, dresink z modrého sýra (veggie, bezlepkové)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">E · 400 g</div>
+                <div class="meal-name">Tortilly s trhaným hovězím, nakládané bílé fazole, čedar, pikantní švestkovo-majonézový dresink</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">F · 120 g</div>
+                <div class="meal-name">Krůtí medailonky zapečené s rajčaty a mozzarellou, omáčka, brambory vařené (bezlepkové)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">G · 150 g</div>
+                <div class="meal-name">Grilovaná rajčata zapečená mozzarellou a pestem, brambory s máslem (veggie, bezlepkové)</div>
               </div>
             </div>
           </div>
 
           <div class="menu-day" role="listitem">
-            <div class="day-header"><span class="day-name">Čtvrtek</span><span class="day-date">15. 5. 2025</span></div>
-            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Hrášková s krutony</span></div>
+            <div class="day-header"><span class="day-name">Čtvrtek</span><span class="day-date">14. 5. 2026</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Květákový krém</span></div>
             <div class="day-meals">
               <div class="meal-cell">
-                <div class="meal-num">Oběd 1</div>
-                <div class="meal-name">Segedínský guláš</div>
-                <div class="meal-desc">Chléb nebo knedlík</div>
-                
+                <div class="meal-num">A · 150 g</div>
+                <div class="meal-name">Studentský řízek, brambory vařené, pikantní tatarská omáčka</div>
               </div>
               <div class="meal-cell">
-                <div class="meal-num">Oběd 2</div>
-                <div class="meal-name">Houbové rizoto</div>
-                <div class="meal-desc">Strouhaný sýr, čerstvá zelenina</div>
-                
+                <div class="meal-num">B · 140 g</div>
+                <div class="meal-name">Vepřové výpečky na bílém zelí, houskové knedlíky</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">C · 120 g</div>
+                <div class="meal-name">Špagety s restovanými kuřecími kousky a sušenými rajčaty, kapary a česnekem na másle, parmazán</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">D · 300 g</div>
+                <div class="meal-name">Zeleninový salát s filírovaným pikantním kuřecím prsíčkem, dressing z modrého sýra (bezlepkové)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">E · 400 g</div>
+                <div class="meal-name">Zeleninový salát s vepřovými řízečky, česnekovým dipem, sweet omáčka</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">F · 120 g</div>
+                <div class="meal-name">Kuřecí Fresh Burger (kuřecí v lupínkách, karamelizovaná cibulka, čedar, slanina, rajče, dip)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">G · 300 g</div>
+                <div class="meal-name">Těstoviny Penne, smetanový listový špenát, sypané strouhanou nivou (veggie)</div>
               </div>
             </div>
           </div>
 
           <div class="menu-day" role="listitem">
-            <div class="day-header"><span class="day-name">Pátek</span><span class="day-date">16. 5. 2025</span></div>
-            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Koprovka s vejcem a bramborem</span></div>
+            <div class="day-header"><span class="day-name">Pátek</span><span class="day-date">15. 5. 2026</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Dršťková polévka</span></div>
             <div class="day-meals">
               <div class="meal-cell">
-                <div class="meal-num">Oběd 1</div>
-                <div class="meal-name">Losos na bylinkách</div>
-                <div class="meal-desc">Dušená rýže, citron</div>
-                
+                <div class="meal-num">A · 120 g</div>
+                <div class="meal-name">Šunka od kosti, krkonošské halušky s houbami</div>
               </div>
               <div class="meal-cell">
-                <div class="meal-num">Oběd 2</div>
-                <div class="meal-name">Svíčková roštěná</div>
-                <div class="meal-desc">Těstoviny, smetanová omáčka</div>
-                
+                <div class="meal-num">B · 2 ks</div>
+                <div class="meal-name">Švestkové bramborové knedlíky s mákem a máslem, moučkový cukr (veggie)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">C · 120 g</div>
+                <div class="meal-name">Kuřecí steak na medu, bramborová kaše s máslem a česnekem (bezlepkové)</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">D · 300 g</div>
+                <div class="meal-name">Pikantní těstovinový salát se zeleninou a šunkou na medu, strouhaná niva</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">E · 400 g</div>
+                <div class="meal-name">Červené tortilly s kuřecími stripsy v parmazánové krustě, slanina, medovo-hořčičný dressing</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">F · 120 g</div>
+                <div class="meal-name">Smažená kuřecí kapsa se slaninou a hermelínem, brambory vařené, domácí tatarka</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">G · 300 g</div>
+                <div class="meal-name">Houbové halušky s hříbky a grilovanými žampiony (veggie)</div>
               </div>
             </div>
           </div>
 
-        </div><!-- /menu-days A -->
+        </div><!-- /menu-days Modletice -->
       </div><!-- /panel-a -->
 
-      <!-- PANEL: DODAVATEL B -->
+      <!-- PANEL: ŠTĚCHOVICKÝ MAJÁK -->
       <div class="supplier-panel panel-b" id="panel-b-t1" role="tabpanel">
         <div class="supplier-header b">
-          <span class="supplier-header-name">Dodavatel B</span>
-          <span class="supplier-header-note">— každé jídlo včetně polévky dodavatele B a dovozu</span>
+          <span class="supplier-header-name">Štěchovický Maják</span>
+          <span class="supplier-header-note">— každé jídlo včetně polévky Štěchovického Majáku a dovozu</span>
         </div>
         <div class="menu-days" role="list">
 
           <div class="menu-day" role="listitem">
-            <div class="day-header"><span class="day-name">Pondělí</span><span class="day-date">12. 5. 2025</span></div>
-            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Hovězí vývar s játrovými knedlíčky</span></div>
+            <div class="day-header"><span class="day-name">Pondělí</span><span class="day-date">11. 5. 2026</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Bramboračka</span></div>
             <div class="day-meals">
               <div class="meal-cell">
-                <div class="meal-num">Oběd 1</div>
-                <div class="meal-name">Kuřecí řízek</div>
-                <div class="meal-desc">Bramborový salát</div>
-                
+                <div class="meal-num">1 · 150 g</div>
+                <div class="meal-name">Hovězí pečeně s křenovou omáčkou, houskový knedlík</div>
               </div>
               <div class="meal-cell">
-                <div class="meal-num">Oběd 2</div>
-                <div class="meal-name">Čočka na kyselo</div>
-                <div class="meal-desc">Vařené vejce, kyselá okurka, chléb</div>
-                
+                <div class="meal-num">2 · 150 g</div>
+                <div class="meal-name">Pečené kuřecí stehno s nádivkou, bramborová kaše</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">3 · 130 g</div>
+                <div class="meal-name">Medailonky z panenky, fazolky se slaninou, bramborová kaše</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">4 · 200 g</div>
+                <div class="meal-name">Šunkofleky s uzeným masem, kyselá okurka</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">5 · 150 g</div>
+                <div class="meal-name">Bramborové noky s kuřecím masem, špenát, česnek, smetana, sýr</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">6 · 250 g</div>
+                <div class="meal-name">Těstovinový salát s kuřecím masem, zeleninou, sýrovým dipem</div>
               </div>
             </div>
           </div>
 
           <div class="menu-day" role="listitem">
-            <div class="day-header"><span class="day-name">Úterý</span><span class="day-date">13. 5. 2025</span></div>
-            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Česnečka se sýrem a krutony</span></div>
+            <div class="day-header"><span class="day-name">Úterý</span><span class="day-date">12. 5. 2026</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Tomatová s těstovinou</span></div>
             <div class="day-meals">
               <div class="meal-cell">
-                <div class="meal-num">Oběd 1</div>
-                <div class="meal-name">Vepřová pečeně na kmíně</div>
-                <div class="meal-desc">Zelí, bramborový nebo houskový knedlík</div>
-                
+                <div class="meal-num">1 · 100 g</div>
+                <div class="meal-name">Svíčková na smetaně s hovězím masem, houskový knedlík</div>
               </div>
               <div class="meal-cell">
-                <div class="meal-num">Oběd 2</div>
-                <div class="meal-name">Plněné papriky</div>
-                <div class="meal-desc">Rajčatová omáčka, rýže</div>
-                
+                <div class="meal-num">2 · 250 g</div>
+                <div class="meal-name">Francouzské brambory s kyselou okurkou</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">3 · 130 g</div>
+                <div class="meal-name">Kuřecí soté na pórku a žampionech, jasmínová rýže</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">4 · 150 g</div>
+                <div class="meal-name">Smažené karbanátky s bramborovou kaší, kyselá okurka</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">5 · 250 g</div>
+                <div class="meal-name">Dukátové buchtičky s vanilkovým krémem</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">6 · 250 g</div>
+                <div class="meal-name">Těstovinový salát s kuřecím masem, zeleninou, sýrovým dipem</div>
               </div>
             </div>
           </div>
 
           <div class="menu-day" role="listitem">
-            <div class="day-header"><span class="day-name">Středa</span><span class="day-date">14. 5. 2025</span></div>
-            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Hrachová s uzeninou</span></div>
+            <div class="day-header"><span class="day-name">Středa</span><span class="day-date">13. 5. 2026</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Gulášová</span></div>
             <div class="day-meals">
               <div class="meal-cell">
-                <div class="meal-num">Oběd 1</div>
-                <div class="meal-name">Vepřový závitek se slaninou</div>
-                <div class="meal-desc">Bramborová kaše</div>
-                
+                <div class="meal-num">1 · 150 g</div>
+                <div class="meal-name">Kuře na paprice s houskovým knedlíkem</div>
               </div>
               <div class="meal-cell">
-                <div class="meal-num">Oběd 2</div>
-                <div class="meal-name">Zeleninové kari</div>
-                <div class="meal-desc">Rýže basmati, jogurt</div>
-                
+                <div class="meal-num">2 · 250 g</div>
+                <div class="meal-name">Salát s modrým sýrem, vlašskými ořechy, medový dressing</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">3 · 130 g</div>
+                <div class="meal-name">Konfitovaná krkovice s červeným zelím, bramborový knedlík</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">4 · 250 g</div>
+                <div class="meal-name">Čočka na kyselo s vajíčkem, kyselá okurka</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">5 · 150 g</div>
+                <div class="meal-name">Smažené řízečky z vepřové pečeně s bramborovou kaší</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">6 · 250 g</div>
+                <div class="meal-name">Těstovinový salát s kuřecím masem, zeleninou, sýrovým dipem</div>
               </div>
             </div>
           </div>
 
           <div class="menu-day" role="listitem">
-            <div class="day-header"><span class="day-name">Čtvrtek</span><span class="day-date">15. 5. 2025</span></div>
-            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Zeleninový krém s pečivem</span></div>
+            <div class="day-header"><span class="day-name">Čtvrtek</span><span class="day-date">14. 5. 2026</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Drůbeží kaldoun</span></div>
             <div class="day-meals">
               <div class="meal-cell">
-                <div class="meal-num">Oběd 1</div>
-                <div class="meal-name">Kuřecí stehno na česneku</div>
-                <div class="meal-desc">Opékané brambory, okurkový salát</div>
-                
+                <div class="meal-num">1 · 100 g</div>
+                <div class="meal-name">Hovězí znojemská pečeně s houskovým knedlíkem</div>
               </div>
               <div class="meal-cell">
-                <div class="meal-num">Oběd 2</div>
-                <div class="meal-name">Špenát se sázeným vejcem</div>
-                <div class="meal-desc">Vařené brambory</div>
-                
+                <div class="meal-num">2 · 150 g</div>
+                <div class="meal-name">Pečená jitrnice s bramborovou lepenicí</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">3 · 130 g</div>
+                <div class="meal-name">Řízečky z pečeně v bramboráčku, zelný salát s mrkví a majonézou</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">4 · 200 g</div>
+                <div class="meal-name">Rizoto s kuřecím masem, paprikami, pórkem a sýrem</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">5 · 120 g</div>
+                <div class="meal-name">Rybí filé, bramborová kaše, grilovaná zelenina</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">6 · 250 g</div>
+                <div class="meal-name">Těstovinový salát s kuřecím masem, zeleninou, sýrovým dipem</div>
               </div>
             </div>
           </div>
 
           <div class="menu-day" role="listitem">
-            <div class="day-header"><span class="day-name">Pátek</span><span class="day-date">16. 5. 2025</span></div>
-            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Bramborová s majoránkou</span></div>
+            <div class="day-header"><span class="day-name">Pátek</span><span class="day-date">15. 5. 2026</span></div>
+            <div class="day-soup"><span class="soup-label">Polévka</span><span class="soup-name">Špenátová</span></div>
             <div class="day-meals">
               <div class="meal-cell">
-                <div class="meal-num">Oběd 1</div>
-                <div class="meal-name">Smažená treska</div>
-                <div class="meal-desc">Bramborová kaše, citron</div>
-                
+                <div class="meal-num">1 · 120 g</div>
+                <div class="meal-name">Vepřo–knedlo–zelo</div>
               </div>
               <div class="meal-cell">
-                <div class="meal-num">Oběd 2</div>
-                <div class="meal-name">Dušené vepřové s houbami</div>
-                <div class="meal-desc">Těstoviny, petrželka</div>
-                
+                <div class="meal-num">2 · 120 g</div>
+                <div class="meal-name">Domácí sekaná s bramborovým salátem</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">3 · 130 g</div>
+                <div class="meal-name">Kuřecí medailonky s hříbkovou omáčkou, jasmínová rýže</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">4 · 120 g</div>
+                <div class="meal-name">Smažené žampiony s vařeným bramborem, tatarka</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">5 · 150 g</div>
+                <div class="meal-name">Těstoviny aglio–olio s rajčátky, parmezánem a rukolou</div>
+              </div>
+              <div class="meal-cell">
+                <div class="meal-num">6 · 250 g</div>
+                <div class="meal-name">Těstovinový salát s kuřecím masem, zeleninou, sýrovým dipem</div>
               </div>
             </div>
           </div>
 
-        </div><!-- /menu-days B -->
+        </div><!-- /menu-days Štěchovický Maják -->
       </div><!-- /panel-b -->
 
       <!-- PDF -->
@@ -327,7 +471,7 @@
           <h3>Stáhnout jídelní lístek jako PDF</h3>
           <p>Oba dodavatelé na jednom listu. Pro tisk nebo uložení.</p>
         </div>
-        <a href="#" class="btn-pdf" aria-label="Stáhnout jídelní lístek jako PDF">⬇ Stáhnout PDF</a>
+        <a href="https://kvalitnipodzimzivota.cz/wp-content/listek/Jidelni-listek.pdf" class="btn-pdf" aria-label="Stáhnout jídelní lístek jako PDF" target="_blank" rel="noopener">⬇ Stáhnout PDF</a>
       </div>
 
     </div><!-- /tyden1 -->
@@ -347,7 +491,7 @@
 <div class="contact-strip">
   <div class="contact-strip-inner">
     <div>
-      <h3>Chcete se objednat?</h3>
+      <h3>Chcete si objednat?</h3>
       <p>Zavolejte nebo napište Jaroslavě Kubáskové. Objednáváme i telefonicky.</p>
     </div>
     <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
