@@ -251,11 +251,19 @@ body.page-firmy .section-intro { margin-bottom: 2rem; margin-left: auto; margin-
 
 /* ── HERO ── */
 .hero {
-  background: var(--navy);
+  background: var(--navy) url('obedy2.jpg') center/cover no-repeat;
   border-bottom: 4px solid var(--teal);
   padding: 4rem 1.5rem 3.5rem;
+  position: relative;
 }
-.hero-inner { max-width: 780px; margin: 0 auto; }
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 46, 59, 0.50);
+  z-index: 0;
+}
+.hero-inner { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
 .hero-badge {
   display: inline-block;
   background: var(--teal); color: #fff;
