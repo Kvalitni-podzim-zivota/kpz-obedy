@@ -207,6 +207,26 @@ h2 {
 .page-header {
   background: var(--navy); padding: 3rem 1.5rem 2.5rem;
   border-bottom: 4px solid var(--teal);
+  position: relative;
+}
+body.page-firmy .page-header {
+  background: var(--navy) url('../img/firmy.jpg') center/cover no-repeat;
+}
+body.page-firmy .page-header::before,
+body.page-menu .page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 46, 59, 0.72);
+  z-index: 0;
+}
+body.page-firmy .page-header-inner,
+body.page-menu .page-header-inner {
+  position: relative;
+  z-index: 1;
+}
+body.page-menu .page-header {
+  background: var(--navy) url('../img/jidelni-listek.jpg') center/cover no-repeat;
 }
 .page-header-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
 .breadcrumb {
@@ -257,7 +277,7 @@ body.page-firmy .section-intro { margin-bottom: 2rem; margin-left: auto; margin-
 
 /* ── HERO ── */
 .hero {
-  background: var(--navy) url('../img/obedy2.jpg') center/cover no-repeat;
+  background: var(--navy) url('../img/obedy.jpg') center/cover no-repeat;
   border-bottom: 4px solid var(--teal);
   padding: 4rem 1.5rem 3.5rem;
   position: relative;
