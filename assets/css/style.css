@@ -257,7 +257,7 @@ body.page-firmy .section-intro { margin-bottom: 2rem; margin-left: auto; margin-
 
 /* ── HERO ── */
 .hero {
-  background: var(--navy) url('obedy2.jpg') center/cover no-repeat;
+  background: var(--navy) url('../img/obedy2.jpg') center/cover no-repeat;
   border-bottom: 4px solid var(--teal);
   padding: 4rem 1.5rem 3.5rem;
   position: relative;
