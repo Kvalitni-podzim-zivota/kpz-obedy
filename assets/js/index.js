@@ -127,12 +127,22 @@ if (form) {
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
   const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(el => {
+
+  document.querySelectorAll('.faq-item.open').forEach(el => {
+    const ans = el.querySelector('.faq-a');
+    ans.style.height = ans.scrollHeight + 'px';
+    ans.getBoundingClientRect(); // force reflow
+    ans.style.height = '0';
     el.classList.remove('open');
     el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
   });
+
   if (!isOpen) {
+    const ans = item.querySelector('.faq-a');
     item.classList.add('open');
     btn.setAttribute('aria-expanded', 'true');
+    ans.getBoundingClientRect(); // force reflow
+    ans.style.height = ans.scrollHeight + 'px';
+    ans.addEventListener('transitionend', () => { ans.style.height = 'auto'; }, { once: true });
   }
 }

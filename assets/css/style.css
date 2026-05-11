@@ -427,13 +427,15 @@ body.page-firmy .section-intro { margin-bottom: 2rem; margin-left: auto; margin-
   gap: 1rem;
 }
 .faq-q:hover { color: var(--teal); }
-.faq-icon { font-size: 1.2rem; font-weight: 400; flex-shrink: 0; transition: transform 0.2s; }
+.faq-icon { font-size: 1.2rem; font-weight: 400; flex-shrink: 0; transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
 .faq-item.open .faq-icon { transform: rotate(45deg); }
 .faq-a {
-  display: none; padding: 0 0 1.25rem;
+  overflow: hidden; height: 0; opacity: 0;
+  transition: height 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease;
+  padding: 0 0 1.25rem;
   font-size: 0.98rem; color: var(--muted); max-width: 640px;
 }
-.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-a { opacity: 1; }
 
 /* ── GDPR ── */
 .gdpr-box {
