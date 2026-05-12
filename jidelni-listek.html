@@ -74,8 +74,14 @@
 
     <!-- VÝBĚR TÝDNE -->
     <div class="week-tabs" role="tablist" aria-label="Výběr týdne">
-      <button class="week-tab active" role="tab" aria-selected="true" onclick="switchWeek(this,'tyden1')">Tento týden</button>
-      <button class="week-tab" role="tab" aria-selected="false" onclick="switchWeek(this,'tyden2')">Příští týden</button>
+      <button class="week-tab active" role="tab" aria-selected="true" onclick="switchWeek(this,'tyden1')">
+        <span class="week-tab-label">Tento týden</span>
+        <span class="week-tab-date" id="date-tyden1"></span>
+      </button>
+      <button class="week-tab" role="tab" aria-selected="false" onclick="switchWeek(this,'tyden2')">
+        <span class="week-tab-label">Příští týden</span>
+        <span class="week-tab-date" id="date-tyden2"></span>
+      </button>
     </div>
 
     <!-- ══════════ TENTO TÝDEN ══════════ -->
