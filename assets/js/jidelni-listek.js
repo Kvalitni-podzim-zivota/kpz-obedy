@@ -1,18 +1,12 @@
-function getWeekRange(offsetWeeks) {
-  const today = new Date();
-  const day = today.getDay();
-  const monday = new Date(today);
-  monday.setDate(today.getDate() - (day === 0 ? 6 : day - 1) + offsetWeeks * 7);
-  const friday = new Date(monday);
-  friday.setDate(monday.getDate() + 4);
-  const d1 = monday.getDate(), m1 = monday.getMonth() + 1;
-  const d2 = friday.getDate(), m2 = friday.getMonth() + 1;
-  if (m1 === m2) return `${d1}.–${d2}. ${m2}.`;
-  return `${d1}. ${m1}.–${d2}. ${m2}.`;
+function weekRangeFromDays(days) {
+  if (!days || days.length === 0) return '';
+  // Dates stored as "18. 5. 2026"; derive "18.–22. 5." from first and last day.
+  const m1 = days[0].date.match(/(\d+)\. (\d+)\./);
+  const m2 = days[days.length - 1].date.match(/(\d+)\. (\d+)\./);
+  if (!m1 || !m2) return days[0].date;
+  if (m1[2] === m2[2]) return `${m1[1]}.–${m2[1]}. ${m2[2]}.`;
+  return `${m1[1]}. ${m1[2]}.–${m2[1]}. ${m2[2]}.`;
 }
-
-document.getElementById('date-tyden1').textContent = getWeekRange(0);
-document.getElementById('date-tyden2').textContent = getWeekRange(1);
 
 function switchWeek(btn, weekId) {
   document.querySelectorAll('.week-tab').forEach(t => {
@@ -66,6 +60,8 @@ async function loadMenu() {
     fillPanel(menu.tyden1.majak,     'panel-b-t1');
     fillPanel(menu.tyden2.modletice, 'panel-a-t2');
     fillPanel(menu.tyden2.majak,     'panel-b-t2');
+    document.getElementById('date-tyden1').textContent = weekRangeFromDays(menu.tyden1.modletice);
+    document.getElementById('date-tyden2').textContent = weekRangeFromDays(menu.tyden2.modletice);
   } catch (e) {
     console.error('Menu load failed:', e);
     document.querySelectorAll('.menu-days').forEach(el => {
