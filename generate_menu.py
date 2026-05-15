@@ -177,8 +177,8 @@ def main():
     t2_mod, t2_maj = parse_docx(t2_path)
 
     menu = {
-        'tyden1': {'modletice': t1_mod, 'majak': t1_maj},
-        'tyden2': {'modletice': t2_mod, 'majak': t2_maj},
+        'tyden1': {'label': week_label(t1_mod), 'modletice': t1_mod, 'majak': t1_maj},
+        'tyden2': {'label': week_label(t2_mod), 'modletice': t2_mod, 'majak': t2_maj},
     }
 
     out = Path('assets/menu.json')
