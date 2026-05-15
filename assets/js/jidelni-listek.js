@@ -1,12 +1,3 @@
-function weekRangeFromDays(days) {
-  if (!days || days.length === 0) return '';
-  // Dates stored as "18. 5. 2026"; derive "18.–22. 5." from first and last day.
-  const m1 = days[0].date.match(/(\d+)\. (\d+)\./);
-  const m2 = days[days.length - 1].date.match(/(\d+)\. (\d+)\./);
-  if (!m1 || !m2) return days[0].date;
-  if (m1[2] === m2[2]) return `${m1[1]}.–${m2[1]}. ${m2[2]}.`;
-  return `${m1[1]}. ${m1[2]}.–${m2[1]}. ${m2[2]}.`;
-}
 
 function switchWeek(btn, weekId) {
   document.querySelectorAll('.week-tab').forEach(t => {
@@ -60,8 +51,8 @@ async function loadMenu() {
     fillPanel(menu.tyden1.majak,     'panel-b-t1');
     fillPanel(menu.tyden2.modletice, 'panel-a-t2');
     fillPanel(menu.tyden2.majak,     'panel-b-t2');
-    document.getElementById('date-tyden1').textContent = weekRangeFromDays(menu.tyden1.modletice);
-    document.getElementById('date-tyden2').textContent = weekRangeFromDays(menu.tyden2.modletice);
+    document.getElementById('date-tyden1').textContent = menu.tyden1.label || '';
+    document.getElementById('date-tyden2').textContent = menu.tyden2.label || '';
   } catch (e) {
     console.error('Menu load failed:', e);
     document.querySelectorAll('.menu-days').forEach(el => {
