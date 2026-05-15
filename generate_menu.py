@@ -17,12 +17,14 @@ from xml.etree import ElementTree as ET
 # ── DOCX reading ──────────────────────────────────────────────────────────────
 
 def read_docx_paragraphs(path):
+    # A .docx file is a ZIP archive; the text lives in word/document.xml.
     with zipfile.ZipFile(path) as z:
         with z.open('word/document.xml') as f:
             tree = ET.parse(f)
     ns = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'
     paragraphs = []
     for para in tree.getroot().iter(f'{{{ns}}}p'):
+        # Each paragraph may be split across multiple <w:r><w:t> runs; join them.
         text = ''.join(t.text for t in para.iter(f'{{{ns}}}t') if t.text).strip()
         if text:
             paragraphs.append(text)
@@ -33,20 +35,24 @@ def read_docx_paragraphs(path):
 DAYS_CZ = ['Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek']
 
 def is_separator(line):
+    # Both supplier DOCXs use a row of 10+ dashes as a day boundary.
     return bool(re.match(r'^-{10,}$', line.strip()))
 
 def strip_allergens(text):
+    # Allergens appear at the end as "/1,3,7/" or bare "1,3,7" — strip both forms.
     text = re.sub(r'\s*/[\d,\s]+/\s*$', '', text)
     text = re.sub(r'\s+\d{1,2}(?:,\d{1,2})+\s*$', '', text)
     return text.strip()
 
 def normalize_weight(raw):
+    # Ensure a space between the number and unit (e.g. "200g" → "200 g").
     raw = raw.strip()
     raw = re.sub(r'(\d+)\s*g$', r'\1 g', raw)
     raw = re.sub(r'(\d+)\s*ks$', r'\1 ks', raw)
     return raw
 
 def parse_week_dates(header):
+    # Header looks like "Jídelní lístek 19.5. – 23.5.2025"; extract start day and year.
     m = re.search(r'(\d+)\.\s*(\d+)\.\s*[-–].*?(\d{4})', header)
     if not m:
         return [''] * 5
@@ -54,6 +60,8 @@ def parse_week_dates(header):
     return [f'{start_day + i}. {month}. {year}' for i in range(5)]
 
 def split_suppliers(paragraphs):
+    # Both suppliers are sometimes delivered in a single DOCX; Maják / Štěchovický
+    # marks where the second supplier's section starts.
     for i, line in enumerate(paragraphs):
         if 'Maják' in line or 'Štěchovický' in line:
             return paragraphs[:i], paragraphs[i:]
@@ -62,6 +70,10 @@ def split_suppliers(paragraphs):
 # ── parsers ───────────────────────────────────────────────────────────────────
 
 def parse_modletice(lines, dates):
+    # Modletice format:
+    #   "Pondělí: Rajská polévka"   — day header, rest is the soup name
+    #   "A 200g Svíčková na smetaně" — meal row: letter label, weight, description
+    #   "----------"                 — day separator (flush the current day)
     days, soup, meals, day_idx = [], None, [], 0
     for line in lines:
         if is_separator(line):
@@ -88,6 +100,9 @@ def parse_modletice(lines, dates):
     return days
 
 def parse_majak(lines, dates):
+    # Maják format differs from Modletice:
+    #   "Pondělí: Zeleninová polévka"  — same day header style
+    #   "1: Kuřecí řízek 150g /1,3,7/" — meal row: number label, description, weight, allergens inline
     days, soup, meals, day_idx = [], None, [], 0
     for line in lines:
         if is_separator(line):
@@ -114,8 +129,10 @@ def parse_majak(lines, dates):
 
 def parse_docx(path):
     paragraphs = read_docx_paragraphs(str(path))
+    # First paragraph is the week header; use it to derive the five day dates.
     dates = parse_week_dates(paragraphs[0]) if paragraphs else [''] * 5
     mod_lines, maj_lines = split_suppliers(paragraphs)
+    # Skip each section's own header line before parsing meals.
     modletice = parse_modletice(mod_lines[1:], dates)
     majak = parse_majak(maj_lines[1:], dates)
     return modletice, majak
