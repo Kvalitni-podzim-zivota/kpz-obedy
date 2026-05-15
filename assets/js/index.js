@@ -95,6 +95,12 @@ if (form) {
       souhlasErr.style.display = 'block'; ok = false;
     } else { souhlasErr.style.display = 'none'; }
 
+    const vop = document.getElementById('vop');
+    const vopErr = document.getElementById('fg-vop-err');
+    if (!vop.checked) {
+      vopErr.style.display = 'block'; ok = false;
+    } else { vopErr.style.display = 'none'; }
+
     if (!ok) return;
 
     // --- DOPLŇTE VAŠE ODESLÁNÍ (fetch na PHP, Formspree, apod.) ---
