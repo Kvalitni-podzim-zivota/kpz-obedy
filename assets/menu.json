@@ -1,0 +1,682 @@
+{
+  "tyden1": {
+    "modletice": [
+      {
+        "day": "Pondělí",
+        "date": "18. 5. 2026",
+        "soup": "Sladkokyselá zelňačka s klobásou a bramborem",
+        "meals": [
+          {
+            "label": "A · 300 g",
+            "desc": "Penne s mletým masem a ohnivou omáčkou se zeleninou, sypané ementálem"
+          },
+          {
+            "label": "B · 120 g",
+            "desc": "Maďarský hovězí guláš na paprikách, rýže dušená"
+          },
+          {
+            "label": "C · 140 g",
+            "desc": "Pfeffer steak z krkovičky (pepřová omáčka), bramborová kaše"
+          },
+          {
+            "label": "D · 300 g",
+            "desc": "Salát Caprese s kuřecím masem, mozzarellou a bazalkovým pestem (bezlepkové)"
+          },
+          {
+            "label": "E · 400 g",
+            "desc": "Tortilly s pečeným kuřecím masem s BBQ omáčkou a čedarem, dip"
+          },
+          {
+            "label": "F · 120 g",
+            "desc": "Medailonky z vepřové panenky po středomořsku, grenaile na másle s petrželkou (bezlepkové)"
+          },
+          {
+            "label": "G · 100 g",
+            "desc": "Grilovaný hermelín na středomořské omáčce (olivy, rajčata, česnek, rozmarýn, víno), grenaile"
+          }
+        ]
+      },
+      {
+        "day": "Úterý",
+        "date": "19. 5. 2026",
+        "soup": "Mexická polévka s fazolemi a klobásou",
+        "meals": [
+          {
+            "label": "A · 120 g",
+            "desc": "Smažený kuřecí řízek, domácí hanácký salát z červeného zelí"
+          },
+          {
+            "label": "B · 300 g",
+            "desc": "Francouzské brambory s uzeným masem, paprikami a sýrem, okurka (bezlepkové)"
+          },
+          {
+            "label": "C · 120 g",
+            "desc": "Hovězí pečeně s rajskou omáčkou, houskové knedlíky"
+          },
+          {
+            "label": "D · 300 g",
+            "desc": "Zeleninový salát s šunkou od kosti a nakládaným hermelínem, dip"
+          },
+          {
+            "label": "E · 400 g",
+            "desc": "Zeleninový salát s kuřecími řízečky v panko strouhance, dip, sladká chilli omáčka"
+          },
+          {
+            "label": "F · 140 g",
+            "desc": "Minutkové kuřecí nudličky s pórkem, opečené brambory, dip (bezlepkové)"
+          },
+          {
+            "label": "G · 300 g",
+            "desc": "Zapečené brambory s vejci a smetanou, paprikami a parmazánem (veggie, bezlepkové)"
+          }
+        ]
+      },
+      {
+        "day": "Středa",
+        "date": "20. 5. 2026",
+        "soup": "Hráškový krém",
+        "meals": [
+          {
+            "label": "A · 140 g",
+            "desc": "Pečená kotleta na houbách a smetaně, jasmínová rýže"
+          },
+          {
+            "label": "B · 220 g",
+            "desc": "Pečené kuřecí stehýnko po zbojnicku se špenátem, bramborové knedlíky"
+          },
+          {
+            "label": "C · 150 g",
+            "desc": "Smažený hermelín, brambory vařené s máslem a pažitkou, domácí tatarka (veggie)"
+          },
+          {
+            "label": "D · 300 g",
+            "desc": "Zeleninový salát s kuřecím masem v teriyaki omáčce, česnekový dip ze zakysané smetany"
+          },
+          {
+            "label": "E · 400 g",
+            "desc": "Tortilly s trhaným bůčkem na medu a česneku se zeleninou, čedarový dressing"
+          },
+          {
+            "label": "F · 150 g",
+            "desc": "Smažené kuřecí stripsy, wasabi bramborová kaše, pažitka"
+          },
+          {
+            "label": "G · 120 g",
+            "desc": "Grilované žampiony s houbovou omáčkou na smetaně, baby makarony"
+          }
+        ]
+      },
+      {
+        "day": "Čtvrtek",
+        "date": "21. 5. 2026",
+        "soup": "Kulajda s houbami",
+        "meals": [
+          {
+            "label": "A · 200 g",
+            "desc": "Kuřecí stehýnko na paprice a smetaně, kolínka"
+          },
+          {
+            "label": "B · 140 g",
+            "desc": "Domácí sekaná se slaninou a čedarem, bramborová kaše"
+          },
+          {
+            "label": "C · 300 g",
+            "desc": "Slovácké halušky se zelím a uzeným masem, petrželka"
+          },
+          {
+            "label": "D · 300 g",
+            "desc": "Zeleninový salát, vepřové nudličky, česnekový dresink"
+          },
+          {
+            "label": "E · 400 g",
+            "desc": "Tortilly s vepřovým gyros masem a zeleninou, strouhaný balkánský sýr, česnekový dressing"
+          },
+          {
+            "label": "F · 100 g",
+            "desc": "Grilovaný losos s karotkou, bramborová kaše, citron (bezlepkové)"
+          },
+          {
+            "label": "G · 200 g",
+            "desc": "Baby karotka na bylinkovém másle, bramborová kaše (veggie, bezlepkové)"
+          },
+          {
+            "label": "H · 300 g",
+            "desc": "Halušky s paprikovou omáčkou na smetaně (veggie)"
+          }
+        ]
+      },
+      {
+        "day": "Pátek",
+        "date": "22. 5. 2026",
+        "soup": "Slepičí masový vývar s noky a zeleninou",
+        "meals": [
+          {
+            "label": "A · 120 g",
+            "desc": "Kuřecí nudličky se smetanou, nivou a pórkem, jasmínová rýže"
+          },
+          {
+            "label": "B · 200 g",
+            "desc": "Dukátové buchtičky s vanilkovým krémem (veggie)"
+          },
+          {
+            "label": "C · 150 g",
+            "desc": "Holandský řízek s ementálem, brambory vařené, tatarská omáčka"
+          },
+          {
+            "label": "D · 300 g",
+            "desc": "Salát s černou čočkou Beluga, pečenou dýní a kuřecím prsíčkem (bezlepkové)"
+          },
+          {
+            "label": "E · 400 g",
+            "desc": "Tortilly plněné grilovaným kuřecím masem a slaninou, zelenina, medovo-hořčičný dressing"
+          },
+          {
+            "label": "F · 250 g",
+            "desc": "Kuřecí stehýnko na sušených švestkách a červeném vínu, bramborový knedlík, červené zelí"
+          },
+          {
+            "label": "G · 100 g",
+            "desc": "Trhaný Bacon Burger (čedar, slanina, hovězí, glazovaná cibulka, okurka, dresink)"
+          },
+          {
+            "label": "H · 120 g",
+            "desc": "Opečené uzené tofu s nivovou omáčkou a pórkem, jasmínová rýže (veggie)"
+          }
+        ]
+      }
+    ],
+    "majak": [
+      {
+        "day": "Pondělí",
+        "date": "18. 5. 2026",
+        "soup": "Čočková s uzeným",
+        "meals": [
+          {
+            "label": "1 · 80 g",
+            "desc": "Koprová omáčka s hovězím masem, houskový knedlík"
+          },
+          {
+            "label": "2 · 250 g",
+            "desc": "Zeleninový salát s pečeným kozím sýrem, červená řepa, medový dressing"
+          },
+          {
+            "label": "3 · 250 g",
+            "desc": "Halušky s uzeným masem a bílým zelím, smažená cibulka"
+          },
+          {
+            "label": "4 · 250 g",
+            "desc": "Tortilla se smaženými kuřecími řízečky, sýr, česnekový dip, salát, hranolky"
+          },
+          {
+            "label": "5 · 140 g",
+            "desc": "Smažené řízečky z vepřové panenky s vařeným bramborem, tatarka"
+          },
+          {
+            "label": "6 · 140 g",
+            "desc": "Pikantní kuřecí křidélka, batátové hranolky, česnekový dip"
+          }
+        ]
+      },
+      {
+        "day": "Úterý",
+        "date": "19. 5. 2026",
+        "soup": "Kuřecí vývar s hráškem",
+        "meals": [
+          {
+            "label": "1 · 120 g",
+            "desc": "Hovězí mleté biftečky se žampionovou omáčkou, šťouchaný brambor"
+          },
+          {
+            "label": "2 · 180 g",
+            "desc": "Buřty na černém pivu, vařený brambor"
+          },
+          {
+            "label": "3 · 130 g",
+            "desc": "Pečené špalíčky z vepřového ramínka, špenát, bramborový knedlík"
+          },
+          {
+            "label": "4 · 130 g",
+            "desc": "Smažený sýrový mix (Gouda, hermelín, niva), vařený brambor, tatarka"
+          },
+          {
+            "label": "5 · 250 g",
+            "desc": "Rizoto z bulguru se zeleninou a grilovanými kuřecími filetky"
+          },
+          {
+            "label": "6 · 140 g",
+            "desc": "Pikantní kuřecí křidélka, batátové hranolky, česnekový dip"
+          }
+        ]
+      },
+      {
+        "day": "Středa",
+        "date": "20. 5. 2026",
+        "soup": "Dršťková",
+        "meals": [
+          {
+            "label": "1 · 150 g",
+            "desc": "¼ pečeného kuřátka s jasmínovou rýží, okurkový salátek"
+          },
+          {
+            "label": "2 · 150 g",
+            "desc": "Mexické pikantní vepřové nudličky se sýrovým nachos"
+          },
+          {
+            "label": "3 · 130 g",
+            "desc": "Medailonky z panenky se slaninovým přelivem, bramborová kaše"
+          },
+          {
+            "label": "4 · 150 g",
+            "desc": "Kotlíkový guláš s klobásou, houskový knedlík"
+          },
+          {
+            "label": "5 · 140 g",
+            "desc": "Smažený řízek z vepřové pečeně s bramborovým salátem"
+          },
+          {
+            "label": "6 · 140 g",
+            "desc": "Pikantní kuřecí křidélka, batátové hranolky, česnekový dip"
+          }
+        ]
+      },
+      {
+        "day": "Čtvrtek",
+        "date": "21. 5. 2026",
+        "soup": "Zelňačka s klobásou",
+        "meals": [
+          {
+            "label": "1 · 250 g",
+            "desc": "Bramborové knedlíky plněné uzeným masem, bílé zelí, cibulka"
+          },
+          {
+            "label": "2 · 150 g",
+            "desc": "Krkovice na grilu s volským okem, americký brambor"
+          },
+          {
+            "label": "3 · 250 g",
+            "desc": "Kroupové houbové rizoto se smetanou a kuřecími prsíčky"
+          },
+          {
+            "label": "4 · 250 g",
+            "desc": "Zeleninový salát se smaženými kuřecími stripsy, americký dressing"
+          },
+          {
+            "label": "5 · 140 g",
+            "desc": "Smažený květák s vařeným bramborem, tatarka"
+          },
+          {
+            "label": "6 · 140 g",
+            "desc": "Pikantní kuřecí křidélka, batátové hranolky, česnekový dip"
+          }
+        ]
+      },
+      {
+        "day": "Pátek",
+        "date": "22. 5. 2026",
+        "soup": "Minestrone s těstovinou",
+        "meals": [
+          {
+            "label": "1 · 80 g",
+            "desc": "Hovězí štěpánská pečeně s houskovým knedlíkem"
+          },
+          {
+            "label": "2 · 250 g",
+            "desc": "Nudličky z vepřové pečeně v nivové omáčce, krokety"
+          },
+          {
+            "label": "3 · 130 g",
+            "desc": "Kuřecí gyros s tzatziky a tortillou zapečenou se sýrem"
+          },
+          {
+            "label": "4 · 130 g",
+            "desc": "Uzená kýta se špenátem, bramborový knedlík"
+          },
+          {
+            "label": "5 · 140 g",
+            "desc": "Smažený holandský řízek s bramborovou kaší, kyselá okurka"
+          },
+          {
+            "label": "6 · 140 g",
+            "desc": "Pikantní kuřecí křidélka, batátové hranolky, česnekový dip"
+          }
+        ]
+      }
+    ]
+  },
+  "tyden2": {
+    "modletice": [
+      {
+        "day": "Pondělí",
+        "date": "25. 5. 2026",
+        "soup": "Frankfurtská polévka s párky a bramborem",
+        "meals": [
+          {
+            "label": "A · 140 g",
+            "desc": "Přírodní vepřový steak, šťáva, nastavovaná kaše (kroupy, česnek, majoránka, máslo)"
+          },
+          {
+            "label": "B · 120 g",
+            "desc": "Krčmový hovězí guláš z kližky na černém pivu, těstoviny kloboučky"
+          },
+          {
+            "label": "C · 120 g",
+            "desc": "Kuřecí pikantní S-čchuan Kung Pao (papriky, zázvor, sladká omáčka se zeleninou), rýžové nudle (bezlepkové)"
+          },
+          {
+            "label": "D · 300 g",
+            "desc": "Zeleninový salát s nakládaným balkánským sýrem a krůtím masem (bezlepkové)"
+          },
+          {
+            "label": "E · 400 g",
+            "desc": "Tortilly s trhanou pikantní krkovičkou a pečenou slaninou, zelenina, dressing"
+          },
+          {
+            "label": "F · 120 g",
+            "desc": "Smažený ementál, brambory granaile na másle, pikantní tatarská omáčka (veggie)"
+          },
+          {
+            "label": "G · 120 g",
+            "desc": "Sojové pikantní nudličky S-čchuan Kung Pao se zeleninou, rýžové nudle (bezlepkové, veggie)"
+          }
+        ]
+      },
+      {
+        "day": "Úterý",
+        "date": "26. 5. 2026",
+        "soup": "Fazolová na kyselo s pečenou slaninou",
+        "meals": [
+          {
+            "label": "A · 120 g",
+            "desc": "Kuřecí stehýnko na chilli a medu, jasmínová rýže"
+          },
+          {
+            "label": "B · 230 g",
+            "desc": "Jahodový MAXI knedlík s vanilkovým přelivem, máslo, moučkový cukr (veggie)"
+          },
+          {
+            "label": "C · 120 g",
+            "desc": "Kuřecí steak zapečený s fazolkami na slanině, opečené brambory, česnekový dip (bezlepkové)"
+          },
+          {
+            "label": "D · 300 g",
+            "desc": "Zeleninový salát BBQ chicken s čedarem a hráškem, pažitkový dressing"
+          },
+          {
+            "label": "E · 400 g",
+            "desc": "Zeleninový salát s kuřecími řízečky v křupínkách, sweet omáčka, česneková omáčka"
+          },
+          {
+            "label": "F · 120 g",
+            "desc": "Krakonošův oheň (vepřové nudličky, smetana, cibule), pečené bramborové Rösti"
+          },
+          {
+            "label": "G · 100 g",
+            "desc": "Grilovaný hermelín se smetanovou omáčkou a cibulí, chilli, pečené bramborové Rösti (veggie)"
+          }
+        ]
+      },
+      {
+        "day": "Středa",
+        "date": "27. 5. 2026",
+        "soup": "Čočková polévka selská s uzeným masem",
+        "meals": [
+          {
+            "label": "A · 150 g",
+            "desc": "Vepřová plec na houbách, těstoviny"
+          },
+          {
+            "label": "B · 120 g",
+            "desc": "Johančino tajemství (kuřecí prsa, šunka, broskev, sýr), bramborová kaše"
+          },
+          {
+            "label": "C · 120 g",
+            "desc": "Kančí gulášek dušený na červeném víně, bramborový knedlík"
+          },
+          {
+            "label": "D · 300 g",
+            "desc": "Zeleninový salát s kuřecím steakem, vejcem a slaninovým chipsem, dip"
+          },
+          {
+            "label": "E · 400 g",
+            "desc": "Tortilla s trhaným hovězím masem, čedar, zelenina, BBQ dressing"
+          },
+          {
+            "label": "F · 200 g",
+            "desc": "Plněné bramborové knedlíky uzeným masem, zelí, cibulka"
+          },
+          {
+            "label": "G · 2 ks",
+            "desc": "Zapečené žampiony portobello s ricottou a parmazánem, houbová omáčka, pečené brambory (veggie)"
+          }
+        ]
+      },
+      {
+        "day": "Čtvrtek",
+        "date": "28. 5. 2026",
+        "soup": "Hrstková polévka",
+        "meals": [
+          {
+            "label": "A · 300 g",
+            "desc": "Mini makarony s milánskou směsí (bazalka, rajčata, šunka), sypané italským sýrem"
+          },
+          {
+            "label": "B · 150 g",
+            "desc": "Trhané vepřové maso, bramborová kaše s máslem a pažitkou (bezlepkové)"
+          },
+          {
+            "label": "C · 300 g",
+            "desc": "Zapečené šunkofleky s uzeným masem, sweet omáčka"
+          },
+          {
+            "label": "D · 300 g",
+            "desc": "Těstovinový salát s česnekem a majonézou, pečenou slaninou a ementálem"
+          },
+          {
+            "label": "E · 350 g",
+            "desc": "Caesar deluxe řízečky z kuřecích prsou v parmazánové krustě, salát, parmazán, Caesar dresink"
+          },
+          {
+            "label": "G · 300 g",
+            "desc": "Makarony s veggie milánskou omáčkou (rajčata, bazalka, smetana), sypané sýrem pecorino (veggie)"
+          }
+        ]
+      },
+      {
+        "day": "Pátek",
+        "date": "29. 5. 2026",
+        "soup": "Česnečka s uzeným masem, bramborem a vejci (bezlepkové)",
+        "meals": [
+          {
+            "label": "A · 220 g",
+            "desc": "Kuřecí stehno na smetaně, těstoviny vřetena"
+          },
+          {
+            "label": "B · 130 g",
+            "desc": "Segedínský guláš speciál (vepřová plec, smetana), houskové knedlíky"
+          },
+          {
+            "label": "C · 140 g",
+            "desc": "Smažená vinná klobása, bramborový salát se šunkou"
+          },
+          {
+            "label": "D · 300 g",
+            "desc": "Těstovinový salát se zeleninou a majonézou a bazalkovým pestem, pečená panenka"
+          },
+          {
+            "label": "E · 400 g",
+            "desc": "Arabský chléb se zeleninou, kuřecí gyros, červená cibulka, balkánský sýr, tzatziki"
+          },
+          {
+            "label": "F · 120 g",
+            "desc": "Španělský hovězí ptáček (okurka, slanina, uzenina, vejce), rýže basmati"
+          },
+          {
+            "label": "G · 120 g",
+            "desc": "Pomalu tažená vepřová líčka na černém pivu, smetanová bramborová kaše"
+          },
+          {
+            "label": "H · 250 g",
+            "desc": "Italské Gnocchi se smetanovo-pepřovou omáčkou, sypané parmazánem (veggie)"
+          }
+        ]
+      }
+    ],
+    "majak": [
+      {
+        "day": "Pondělí",
+        "date": "25. 5. 2026",
+        "soup": "Šumavská kulajda",
+        "meals": [
+          {
+            "label": "1 · 130 g",
+            "desc": "Vepřové na česneku se špenátem, bramborový knedlík"
+          },
+          {
+            "label": "2 · 80 g",
+            "desc": "Štěpánská hovězí pečeně s houskovým knedlíkem"
+          },
+          {
+            "label": "3 · 250 g",
+            "desc": "Caesar salát s kuřecím masem, slaninou, krutony a parmazánem"
+          },
+          {
+            "label": "4 · 140 g",
+            "desc": "Kuřecí filetky na smetaně s hráškem, jasmínová rýže"
+          },
+          {
+            "label": "5 · 150 g",
+            "desc": "Smažené kuřecí Cordon Bleu (šunka, sýr) s vařeným bramborem, tatarka"
+          },
+          {
+            "label": "6 · 250 g",
+            "desc": "Tortilla s trhaným kuřátkem, salát, rajče, česnekový dip, hranolky"
+          }
+        ]
+      },
+      {
+        "day": "Úterý",
+        "date": "26. 5. 2026",
+        "soup": "Frankfurtská s párkem",
+        "meals": [
+          {
+            "label": "1 · 150 g",
+            "desc": "Plněný paprikový lusk v rajské omáčce s houskovým knedlíkem"
+          },
+          {
+            "label": "2 · 150 g",
+            "desc": "Pečené kuřecí paličky s bramborovou kaší, okurkový salát"
+          },
+          {
+            "label": "3 · 250 g",
+            "desc": "Slovenské brynzové halušky se špekem a cibulkou, pažitka"
+          },
+          {
+            "label": "4 · 130 g",
+            "desc": "Kuřecí prsíčko plněné sušenou šunkou a rajčaty, rýže, smetanová omáčka"
+          },
+          {
+            "label": "5 · 120 g",
+            "desc": "Smažená Gouda s vařeným bramborem, tatarka"
+          },
+          {
+            "label": "6 · 250 g",
+            "desc": "Tortilla s trhaným kuřátkem, salát, rajče, česnekový dip, hranolky"
+          }
+        ]
+      },
+      {
+        "day": "Středa",
+        "date": "27. 5. 2026",
+        "soup": "Uzená s kroupami",
+        "meals": [
+          {
+            "label": "1 · 150 g",
+            "desc": "Vepřový guláš s houskovým knedlíkem"
+          },
+          {
+            "label": "2 · 130 g",
+            "desc": "Mix gril (kuřecí prsíčko, vepřová panenka) s pepřovou omáčkou, opékaný brambor"
+          },
+          {
+            "label": "3 · 250 g",
+            "desc": "Srbské rizoto s hráškem a cibulkou, strouhaný sýr, kyselá okurka"
+          },
+          {
+            "label": "4 · 150 g",
+            "desc": "Grilovaná vinná klobása se šťouchaným bramborem"
+          },
+          {
+            "label": "5 · 140 g",
+            "desc": "Smažené kuřecí řízečky s bramborovou kaší"
+          },
+          {
+            "label": "6 · 250 g",
+            "desc": "Tortilla s trhaným kuřátkem, salát, rajče, česnekový dip, hranolky"
+          }
+        ]
+      },
+      {
+        "day": "Čtvrtek",
+        "date": "28. 5. 2026",
+        "soup": "Zeleninová s haluškami",
+        "meals": [
+          {
+            "label": "1 · 150 g",
+            "desc": "Rolovaný vepřový bůček s bramborovým knedlíkem"
+          },
+          {
+            "label": "2 · 150 g",
+            "desc": "Ďábelská kuřecí směs s bramboráčkem"
+          },
+          {
+            "label": "3 · 250 g",
+            "desc": "Těstoviny Carbonara (slanina, smetana, žloutek) s parmezánem"
+          },
+          {
+            "label": "4 · 140 g",
+            "desc": "Kuřecí prsíčka zapečená s broskví a sýrem, šťouchaný brambor"
+          },
+          {
+            "label": "5 · 150 g",
+            "desc": "Smažený řízek z vepřové krkovice, vídeňský bramborový salát"
+          },
+          {
+            "label": "6 · 250 g",
+            "desc": "Tortilla s trhaným kuřátkem, salát, rajče, česnekový dip, hranolky"
+          }
+        ]
+      },
+      {
+        "day": "Pátek",
+        "date": "29. 5. 2026",
+        "soup": "Fazolová",
+        "meals": [
+          {
+            "label": "1 · 150 g",
+            "desc": "Španělský ptáček s jasmínovou rýží"
+          },
+          {
+            "label": "2 · 250 g",
+            "desc": "Zeleninový salát s grilovaným hermelínem, česnekový dresink, brusinky"
+          },
+          {
+            "label": "3 · 130 g",
+            "desc": "Kuřecí stroganov s jasmínovou rýží"
+          },
+          {
+            "label": "4 · 150 g",
+            "desc": "Kuřecí filetky s grilovanou zeleninou a pečenými brambůrkami Grenaille"
+          },
+          {
+            "label": "5 · 130 g",
+            "desc": "Smažené rybí filé s mačkaným pažitkovým bramborem"
+          },
+          {
+            "label": "6 · 250 g",
+            "desc": "Tortilla s trhaným kuřátkem, salát, rajče, česnekový dip, hranolky"
+          }
+        ]
+      }
+    ]
+  }
+}
