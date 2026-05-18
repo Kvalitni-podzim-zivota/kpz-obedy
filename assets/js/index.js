@@ -130,11 +130,25 @@ if (form) {
       'Způsob platby: ' + (platbaMap[platbaVal] || platbaVal),
     ].join('\n');
 
-    window.location.href = 'mailto:obedy@kvalitnipodzimzivota.cz'
+    const mailtoUrl = 'mailto:obedy@kvalitnipodzimzivota.cz'
       + '?subject=' + encodeURIComponent(subject)
       + '&body='    + encodeURIComponent(body);
 
-    document.getElementById('form-success').classList.add('visible');
+    const tempLink = document.createElement('a');
+    tempLink.href = mailtoUrl;
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
+
+    const successEl = document.getElementById('form-success');
+    const fallbackLink = document.createElement('a');
+    fallbackLink.href = mailtoUrl;
+    fallbackLink.textContent = 'klikněte zde';
+    fallbackLink.style.cssText = 'color:inherit;font-weight:600;text-decoration:underline;';
+    successEl.textContent = 'Otevřel se váš e-mailový klient – zkontrolujte zprávu a odešlete ji. Pokud se neotevřel, ';
+    successEl.appendChild(fallbackLink);
+    successEl.appendChild(document.createTextNode('.'));
+    successEl.classList.add('visible');
     form.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
   });
 
