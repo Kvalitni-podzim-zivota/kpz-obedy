@@ -29,8 +29,35 @@ All pages share the same design system defined inline in `<style>` blocks:
 - Two meal suppliers — each has own soup; customers can order from both simultaneously
 - Delivery areas: Vestec, Praha–Libuš, Praha–Písnice, Jesenice (incl. Zdiměřice, Osnice, Kocanda), Dolní Břežany (incl. Lhota, Zálepy), Ohrobec, Dobřejovice, Zvole, Březová–Oleško, Radějovice, Velké Přílepy, Statenice–Černý Vůl, Holubice–Kozinec, Tursko, Noutonice–Lichoceves, Lysolaje
 - Base price 135 Kč incl. VAT, soup always included
-- Delivery fees: **free** for Vestec, Dolní Břežany+spád., Velké Přílepy, Holubice–Kozinec, Tursko, Dobřejovice, Statenice–Černý Vůl, Radějovice, Zvole, Noutonice–Lichoceves; **11 Kč/lunch** for Praha–Libuš, Jesenice+spád., Ohrobec; **35 Kč (1st lunch) + 10 Kč (each additional to same address)** for Praha–Písnice, Březová–Oleško, Lysolaje, and other areas
-- Municipality discounts (not guaranteed — depend on municipality conditions, may change): Vestec 75 Kč/lunch (discount 95 Kč = 35 Kč delivery + 60 Kč off meal); Dobřejovice 105 Kč/lunch (discount 65 Kč = 35 Kč delivery + 30 Kč off meal)
+
+## Pricing per delivery area
+
+When the user asks to update prices or locations, edit this table, then run the update command.
+
+| Location | Total price | Delivery fee | Notes |
+|---|---|---|---|
+| Vestec | 75 Kč | free (covered by discount) | Municipal discount 95 Kč off (35 Kč delivery + 60 Kč off meal). Not guaranteed. |
+| Praha – Libuš | 135 Kč + 11 Kč | 11 Kč/lunch | |
+| Praha – Písnice | 135 Kč + 35/10 Kč | 35 Kč (1st) + 10 Kč (each additional to same address) | |
+| Jesenice (vč. Zdiměřic, Osnice, Kocandy) | 135 Kč + 11 Kč | 11 Kč/lunch | |
+| Dolní Břežany (vč. Lhoty, Zálepů) | 135 Kč | free | |
+| Ohrobec | 135 Kč + 11 Kč | 11 Kč/lunch | |
+| Dobřejovice | 105 Kč | free (covered by discount) | Municipal discount 65 Kč off (35 Kč delivery + 30 Kč off meal). Not guaranteed. |
+| Zvole | 135 Kč | free | |
+| Březová – Oleško | 135 Kč + 35/10 Kč | 35 Kč (1st) + 10 Kč (each additional) | |
+| Radějovice | 135 Kč | free | |
+| Velké Přílepy | 135 Kč | free | |
+| Statenice – Černý Vůl | 135 Kč | free | |
+| Holubice – Kozinec | 135 Kč | free | |
+| Tursko | 135 Kč | free | |
+| Noutonice – Lichoceves | 135 Kč | free | |
+| Lysolaje | 135 Kč + 35/10 Kč | 35 Kč (1st) + 10 Kč (each additional) | |
+| Other areas | 135 Kč + 35/10 Kč | 35 Kč (1st) + 10 Kč (each additional) | |
+
+**When told to update pricing**, apply changes from this table consistently across:
+1. `index.html` — delivery area grid (lines ~155–220) and price calculator `<select>` options
+2. `assets/js/index.js` — `CENY` object (lines ~3–20) and `POZNAMKY` strings (lines ~23–40)
+3. `vop.html` — section 6 (cena, platební podmínky)
 - Orders for **next week**, placed by end of current working week
 - Contact for orders: Jaroslava Kubásková, 778 095 906, obedy@kvalitnipodzimzivota.cz
 - Contact for billing: Šárka Radilová, 778 095 645, administrativa@kvalitnipodzimzivota.cz
