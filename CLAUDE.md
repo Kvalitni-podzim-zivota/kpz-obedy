@@ -37,7 +37,13 @@ All pages share the same design system defined inline in `<style>` blocks:
 
 ## Order form
 
-`index.html` contains an HTML order form (`#objednat-formular`) with client-side validation. **The form does not send emails yet** — the submit handler logs data to console. To wire it up, replace the `console.log` block in the `<script>` at the bottom of `index.html` with a `fetch()` to a PHP endpoint or a service like Formspree.
+`index.html` contains an HTML order form (`#objednat-formular`) with client-side validation. The submit handler is in `assets/js/index.js`.
+
+On submit, the handler opens a `mailto:obedy@kvalitnipodzimzivota.cz` link with a pre-filled subject and body containing all form fields. The user's email client opens and they send the message manually.
+
+Required fields: jméno, telefon, e-mail, ulice, obec, objednávka. Submission is blocked until the user checks all three checkboxes (next-week acknowledgement, GDPR consent, VOP agreement).
+
+**To upgrade to server-side sending** (e.g. SMTP.js, Formspree, or a PHP endpoint): replace the `window.location.href = 'mailto:...'` block in `assets/js/index.js` with a `fetch()` call. The form data is already assembled in local variables (`jmeno`, `telefon`, `email`, `ulice`, `obec`, `psc`, `objednavka`, `platbaVal`) at that point.
 
 ## Menu update workflow
 

@@ -79,6 +79,7 @@ if (form) {
     let ok = true;
     ok = validateField('fg-jmeno', 'jmeno') && ok;
     ok = validateField('fg-telefon', 'telefon') && ok;
+    ok = validateField('fg-email', 'email') && ok;
     ok = validateField('fg-ulice', 'ulice') && ok;
     ok = validateField('fg-obec', 'obec-form') && ok;
     ok = validateField('fg-objednavka', 'objednavka') && ok;
@@ -103,24 +104,42 @@ if (form) {
 
     if (!ok) return;
 
-    // --- DOPLŇTE VAŠE ODESLÁNÍ (fetch na PHP, Formspree, apod.) ---
-    const data = {
-      jmeno:      document.getElementById('jmeno').value,
-      telefon:    document.getElementById('telefon').value,
-      email:      document.getElementById('email').value,
-      ulice:      document.getElementById('ulice').value,
-      obec:       document.getElementById('obec-form').value,
-      psc:        document.getElementById('psc').value,
-      objednavka: document.getElementById('objednavka').value,
-      platba:     document.getElementById('platba').value,
-    };
-    console.log('Data k odeslání:', data);
+    const jmeno      = document.getElementById('jmeno').value.trim();
+    const telefon    = document.getElementById('telefon').value.trim();
+    const email      = document.getElementById('email').value.trim();
+    const ulice      = document.getElementById('ulice').value.trim();
+    const obec       = document.getElementById('obec-form').value;
+    const psc        = document.getElementById('psc').value.trim();
+    const objednavka = document.getElementById('objednavka').value.trim();
+    const platbaVal  = document.getElementById('platba').value;
+    const platbaMap  = { hotove: 'Hotově při rozvozu', prevod: 'Bankovní převod', nevim: 'Nevím, chci poradit' };
+
+    const subject = 'Nová objednávka obědů – ' + jmeno;
+    const body = [
+      'Jméno: '    + jmeno,
+      'Telefon: '  + telefon,
+      'E-mail: '   + email,
+      '',
+      'Adresa doručení:',
+      ulice,
+      obec + (psc ? '  ' + psc : ''),
+      '',
+      'Objednávka:',
+      objednavka,
+      '',
+      'Způsob platby: ' + (platbaMap[platbaVal] || platbaVal),
+    ].join('\n');
+
+    window.location.href = 'mailto:obedy@kvalitnipodzimzivota.cz'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body='    + encodeURIComponent(body);
+
     document.getElementById('form-success').classList.add('visible');
     form.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
   });
 
   // Live validace
-  ['jmeno', 'telefon', 'ulice'].forEach(id => {
+  ['jmeno', 'telefon', 'email', 'ulice'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('blur', () => validateField('fg-' + id, id));
   });

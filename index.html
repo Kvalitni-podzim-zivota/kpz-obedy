@@ -308,8 +308,9 @@
 
         <div class="form-row">
           <div class="form-group" id="fg-email">
-            <label for="email">E-mail <span style="font-weight:400;text-transform:none;font-size:0.8rem;">(nepovinný – pro zasílání jídelního lístku)</span></label>
+            <label for="email">E-mail <span class="req">*</span></label>
             <input type="email" id="email" name="email" autocomplete="email" placeholder="jana@email.cz">
+            <span class="form-error-msg">Vyplňte prosím e-mail.</span>
           </div>
         </div>
 
@@ -413,7 +414,7 @@
         </div>
 
         <div class="form-success" id="form-success" role="alert">
-          ✓ Objednávka odeslána. Ozveme se vám co nejdříve.
+          Otevřel se váš e-mailový klient – zkontrolujte zprávu a odešlete ji.
         </div>
 
       </form>
