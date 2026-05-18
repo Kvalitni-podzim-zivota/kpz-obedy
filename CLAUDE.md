@@ -9,6 +9,8 @@ Static HTML/CSS/JS website for **Služby KPŽ s.r.o.**, a meal delivery service 
 | `index.html`          | Homepage – landing page for households           |
 | `jidelni-listek.html` | Weekly menu with two supplier tabs               |
 | `firmy.html`          | Corporate clients page incl. náhradní plnění     |
+| `vop.html`            | Všeobecné obchodní podmínky (terms & conditions) |
+| `flier.html`          | Printable flier / leták                          |
 | `generate_menu.py`    | Parses DOCX files into `assets/menu.json`        |
 
 No build system, no dependencies, no frameworks. Everything is plain HTML + CSS + JS in single files. Google Fonts loaded via CDN.
