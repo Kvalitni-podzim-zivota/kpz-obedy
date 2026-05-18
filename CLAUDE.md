@@ -71,4 +71,4 @@ Each day entry: `{ "day": "Pondělí", "date": "19. 5. 2025", "soup": "…", "me
 
 ## Deployment
 
-Hosted on GitHub Pages. All internal links are relative — no absolute paths. To deploy: push all three HTML files to the root of the repository and enable Pages from the main branch.
+Hosted on GitHub Pages. All internal links are relative — no absolute paths. To deploy: push all HTML files (`index.html`, `jidelni-listek.html`, `firmy.html`, `vop.html`, `flier.html`) to the root of the repository and enable Pages from the main branch.
