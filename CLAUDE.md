@@ -17,7 +17,7 @@ No build system, no dependencies, no frameworks. Everything is plain HTML + CSS 
 
 ## Structure
 
-All three pages share the same design system defined inline in `<style>` blocks:
+All pages share the same design system defined inline in `<style>` blocks:
 - **Fonts:** Source Serif 4 (headings) + IBM Plex Sans (body)
 - **Colors:** defined as CSS custom properties in `:root` – navy `#1a2e3b`, teal `#2a6b6e`, warm cream `#f5f0e8`
 - **Nav:** sticky top bar, collapses to hamburger on mobile (≤700px)
