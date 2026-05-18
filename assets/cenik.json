@@ -1,0 +1,159 @@
+{
+  "zones": [
+    {
+      "id": "vestec",
+      "label": "Vestec",
+      "villages": ["Vestec"],
+      "jidlo": 75,
+      "doprava": 0,
+      "gridNote": "75 Kč / oběd (obecní sleva*)",
+      "poznamka": "Cena po obecní slevě pro seniory nad 71 let (základní cena 135 Kč). Sleva není nároková a může se změnit."
+    },
+    {
+      "id": "libuse",
+      "label": "Praha – Libuš",
+      "villages": ["Praha – Libuš"],
+      "jidlo": 135,
+      "doprava": 11,
+      "gridNote": "135 Kč + 11 Kč dopravné",
+      "poznamka": "135 Kč oběd + 11 Kč dopravné / oběd."
+    },
+    {
+      "id": "pisnice",
+      "label": "Praha – Písnice",
+      "villages": ["Praha – Písnice"],
+      "jidlo": 135,
+      "doprava": 11,
+      "gridNote": "135 Kč + 11 Kč dopravné",
+      "poznamka": "135 Kč oběd + 11 Kč dopravné / oběd."
+    },
+    {
+      "id": "jesenice",
+      "label": "Jesenice",
+      "selectLabel": "Jesenice (vč. Zdiměřic, Osnice, Kocandy)",
+      "villages": ["Jesenice", "Zdiměřice", "Osnice", "Kocanda"],
+      "jidlo": 135,
+      "doprava": 11,
+      "gridNote": "vč. Zdiměřic, Osnice, Kocandy · 135 Kč + 11 Kč dopravné",
+      "poznamka": "135 Kč oběd + 11 Kč dopravné / oběd."
+    },
+    {
+      "id": "dolni_brezany",
+      "label": "Dolní Břežany",
+      "selectLabel": "Dolní Břežany (vč. Lhoty, Zálepů)",
+      "villages": ["Dolní Břežany", "Lhota", "Zálepy"],
+      "jidlo": 135,
+      "doprava": 0,
+      "gridNote": "vč. Lhoty a Zálepů · 135 Kč, bez dopravného",
+      "poznamka": "135 Kč oběd, dopravné zdarma."
+    },
+    {
+      "id": "ohrobec",
+      "label": "Ohrobec",
+      "villages": ["Ohrobec"],
+      "jidlo": 135,
+      "doprava": 11,
+      "gridNote": "135 Kč + 11 Kč dopravné",
+      "poznamka": "135 Kč oběd + 11 Kč dopravné / oběd."
+    },
+    {
+      "id": "dobrejovice",
+      "label": "Dobřejovice",
+      "villages": ["Dobřejovice"],
+      "jidlo": 105,
+      "doprava": 0,
+      "gridNote": "105 Kč / oběd (obecní sleva*)",
+      "poznamka": "Cena po obecní slevě (základní cena 135 Kč). Sleva není nároková a může se změnit."
+    },
+    {
+      "id": "zvole",
+      "label": "Zvole",
+      "villages": ["Zvole"],
+      "jidlo": 135,
+      "doprava": 0,
+      "gridNote": "135 Kč, bez dopravného",
+      "poznamka": "135 Kč oběd, dopravné zdarma."
+    },
+    {
+      "id": "brezova",
+      "label": "Březová – Oleško",
+      "villages": ["Březová – Oleško"],
+      "jidlo": 135,
+      "doprava": 0,
+      "gridNote": "135 Kč, bez dopravného",
+      "poznamka": "135 Kč oběd, dopravné zdarma."
+    },
+    {
+      "id": "radejovice",
+      "label": "Radějovice",
+      "villages": ["Radějovice"],
+      "jidlo": 135,
+      "doprava": 0,
+      "gridNote": "135 Kč, bez dopravného",
+      "poznamka": "135 Kč oběd, dopravné zdarma."
+    },
+    {
+      "id": "velke_prilepe",
+      "label": "Velké Přílepy",
+      "villages": ["Velké Přílepy"],
+      "jidlo": 135,
+      "doprava": 0,
+      "gridNote": "135 Kč, bez dopravného",
+      "poznamka": "135 Kč oběd, dopravné zdarma."
+    },
+    {
+      "id": "statenice",
+      "label": "Statenice – Černý Vůl",
+      "villages": ["Statenice – Černý Vůl"],
+      "jidlo": 135,
+      "doprava": 0,
+      "gridNote": "135 Kč, bez dopravného",
+      "poznamka": "135 Kč oběd, dopravné zdarma."
+    },
+    {
+      "id": "holubice",
+      "label": "Holubice – Kozinec",
+      "villages": ["Holubice – Kozinec"],
+      "jidlo": 135,
+      "doprava": 0,
+      "gridNote": "135 Kč, bez dopravného",
+      "poznamka": "135 Kč oběd, dopravné zdarma."
+    },
+    {
+      "id": "tursko",
+      "label": "Tursko",
+      "villages": ["Tursko"],
+      "jidlo": 135,
+      "doprava": 0,
+      "gridNote": "135 Kč, bez dopravného",
+      "poznamka": "135 Kč oběd, dopravné zdarma."
+    },
+    {
+      "id": "noutonice",
+      "label": "Noutonice – Lichoceves",
+      "villages": ["Noutonice – Lichoceves"],
+      "jidlo": 135,
+      "doprava": 0,
+      "gridNote": "135 Kč, bez dopravného",
+      "poznamka": "135 Kč oběd, dopravné zdarma."
+    },
+    {
+      "id": "lysolaje",
+      "label": "Lysolaje",
+      "villages": ["Lysolaje"],
+      "jidlo": 135,
+      "doprava": 35,
+      "gridNote": "135 Kč + dopravné†",
+      "poznamka": "135 Kč oběd + 35 Kč dopravné (1. oběd). Každý další na stejnou adresu: 10 Kč."
+    },
+    {
+      "id": "jina",
+      "label": "Jiná obec",
+      "villages": ["Jiná obec"],
+      "jidlo": 135,
+      "doprava": 35,
+      "inGrid": false,
+      "poznamka": "135 Kč oběd + dopravné. Upřesnění při objednávce."
+    }
+  ]
+}

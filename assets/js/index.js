@@ -1,82 +1,92 @@
-// Kalkulačka ceny
-// doprava: 0 = zdarma, 11 = 11 Kč/oběd, 35 = 35 Kč za 1. oběd + 10 Kč za každý další (výpočet pro 1 oběd/den)
-const ceny = {
-  vestec:        { jidlo: 75,  doprava: 0 },
-  libuse:        { jidlo: 135, doprava: 11 },
-  pisnice:       { jidlo: 135, doprava: 35 },
-  jesenice:      { jidlo: 135, doprava: 11 },
-  dolni_brezany: { jidlo: 135, doprava: 0 },
-  ohrobec:       { jidlo: 135, doprava: 11 },
-  dobrejovice:   { jidlo: 105, doprava: 0 },
-  zvole:         { jidlo: 135, doprava: 0 },
-  brezova:       { jidlo: 135, doprava: 35 },
-  radejovice:    { jidlo: 135, doprava: 0 },
-  velke_prilepe: { jidlo: 135, doprava: 0 },
-  statenice:     { jidlo: 135, doprava: 0 },
-  holubice:      { jidlo: 135, doprava: 0 },
-  tursko:        { jidlo: 135, doprava: 0 },
-  noutonice:     { jidlo: 135, doprava: 0 },
-  lysolaje:      { jidlo: 135, doprava: 35 },
-  jina:          { jidlo: 135, doprava: 35 },
-};
+// Načtení ceníku a inicializace kalkulačky + selectů
+let _ceny = null;
+let _poznamky = null;
 
-const poznamky = {
-  vestec:        'Cena po obecní slevě (základní cena 135 Kč). Sleva není nároková a může se změnit.',
-  libuse:        '135 Kč oběd + 11 Kč dopravné / oběd.',
-  pisnice:       '135 Kč oběd + 35 Kč dopravné (1. oběd). Každý další na stejnou adresu: 10 Kč.',
-  jesenice:      '135 Kč oběd + 11 Kč dopravné / oběd.',
-  dolni_brezany: '135 Kč oběd, dopravné zdarma.',
-  ohrobec:       '135 Kč oběd + 11 Kč dopravné / oběd.',
-  dobrejovice:   'Cena po obecní slevě (základní cena 135 Kč). Sleva není nároková a může se změnit.',
-  zvole:         '135 Kč oběd, dopravné zdarma.',
-  brezova:       '135 Kč oběd + 35 Kč dopravné (1. oběd). Každý další na stejnou adresu: 10 Kč.',
-  radejovice:    '135 Kč oběd, dopravné zdarma.',
-  velke_prilepe: '135 Kč oběd, dopravné zdarma.',
-  statenice:     '135 Kč oběd, dopravné zdarma.',
-  holubice:      '135 Kč oběd, dopravné zdarma.',
-  tursko:        '135 Kč oběd, dopravné zdarma.',
-  noutonice:     '135 Kč oběd, dopravné zdarma.',
-  lysolaje:      '135 Kč oběd + 35 Kč dopravné (1. oběd). Každý další na stejnou adresu: 10 Kč.',
-  jina:          '135 Kč oběd + dopravné. Upřesnění při objednávce.',
-};
+fetch('assets/cenik.json')
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    _ceny = {};
+    _poznamky = {};
+    data.zones.forEach(function(z) {
+      _ceny[z.id] = { jidlo: z.jidlo, doprava: z.doprava };
+      _poznamky[z.id] = z.poznamka;
+    });
+
+    // Mřížka doručovacích oblastí
+    var grid = document.getElementById('cenik-grid');
+    if (grid) {
+      var gridHtml = '';
+      data.zones.forEach(function(z) {
+        if (z.inGrid === false) return;
+        gridHtml += '<div style="background:#fff;padding:1rem 1.25rem;">'
+          + '<div style="font-weight:700;color:var(--navy);">' + z.label + '</div>'
+          + '<div style="font-size:0.82rem;color:var(--muted);">' + z.gridNote + '</div>'
+          + '</div>';
+      });
+      grid.innerHTML = gridHtml;
+    }
+
+    // Select kalkulačky
+    var calcSelect = document.getElementById('obec');
+    if (calcSelect) {
+      var calcHtml = '<option value="">– vyberte obec –</option>';
+      data.zones.forEach(function(z) {
+        calcHtml += '<option value="' + z.id + '">' + (z.selectLabel || z.label) + '</option>';
+      });
+      calcSelect.innerHTML = calcHtml;
+    }
+
+    // Select objednávkového formuláře (jednotlivé obce vč. spádových)
+    var formSelect = document.getElementById('obec-form');
+    if (formSelect) {
+      var formHtml = '<option value="">– vyberte obec –</option>';
+      data.zones.forEach(function(z) {
+        z.villages.forEach(function(v) {
+          var lbl = v === 'Jiná obec' ? 'Jiná obec (zeptejte se na cenu)' : v;
+          formHtml += '<option value="' + v + '">' + lbl + '</option>';
+        });
+      });
+      formSelect.innerHTML = formHtml;
+    }
+  });
 
 function spocitej() {
-  const obec = document.getElementById('obec').value;
-  const pocet = parseInt(document.getElementById('pocet').value, 10);
-  const result = document.getElementById('result');
-  const priceEl = document.getElementById('result-price');
-  const noteEl = document.getElementById('result-note');
+  if (!_ceny) return;
+  var obec = document.getElementById('obec').value;
+  var pocet = parseInt(document.getElementById('pocet').value, 10);
+  var result = document.getElementById('result');
+  var priceEl = document.getElementById('result-price');
+  var noteEl = document.getElementById('result-note');
 
   if (!obec || !pocet || pocet < 1) {
     result.classList.remove('visible');
     return;
   }
 
-  const c = ceny[obec];
-  // Pro doprava=35: výpočet předpokládá 1 oběd na adresu denně
-  const celkem = (c.jidlo + c.doprava) * pocet;
-  const jedenObejd = c.jidlo + c.doprava;
+  var c = _ceny[obec];
+  var celkem = (c.jidlo + c.doprava) * pocet;
+  var jedenObejd = c.jidlo + c.doprava;
 
   priceEl.textContent = celkem.toLocaleString('cs-CZ') + ' Kč / měsíc';
-  noteEl.textContent = jedenObejd + ' Kč za oběd · ' + pocet + ' obědů · ' + (poznamky[obec] || '');
+  noteEl.textContent = jedenObejd + ' Kč za oběd · ' + pocet + ' obědů · ' + (_poznamky[obec] || '');
   result.classList.add('visible');
 }
 
 // Objednávkový formulář – validace
-const form = document.getElementById('objednavka-form');
+var form = document.getElementById('objednavka-form');
 if (form) {
   function validateField(id, fieldId) {
-    const fg = document.getElementById(id);
-    const el = document.getElementById(fieldId);
+    var fg = document.getElementById(id);
+    var el = document.getElementById(fieldId);
     if (!fg || !el) return true;
-    const val = el.value.trim();
+    var val = el.value.trim();
     if (!val) { fg.classList.add('invalid'); return false; }
     fg.classList.remove('invalid'); return true;
   }
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    let ok = true;
+    var ok = true;
     ok = validateField('fg-jmeno', 'jmeno') && ok;
     ok = validateField('fg-telefon', 'telefon') && ok;
     ok = validateField('fg-email', 'email') && ok;
@@ -84,38 +94,38 @@ if (form) {
     ok = validateField('fg-obec', 'obec-form') && ok;
     ok = validateField('fg-objednavka', 'objednavka') && ok;
 
-    const pristiTyden = document.getElementById('pristi-tyden');
-    const pristiErr = document.getElementById('fg-pristi-tyden-err');
+    var pristiTyden = document.getElementById('pristi-tyden');
+    var pristiErr = document.getElementById('fg-pristi-tyden-err');
     if (!pristiTyden.checked) {
       pristiErr.style.display = 'block'; ok = false;
     } else { pristiErr.style.display = 'none'; }
 
-    const souhlas = document.getElementById('souhlas');
-    const souhlasErr = document.getElementById('fg-souhlas-err');
+    var souhlas = document.getElementById('souhlas');
+    var souhlasErr = document.getElementById('fg-souhlas-err');
     if (!souhlas.checked) {
       souhlasErr.style.display = 'block'; ok = false;
     } else { souhlasErr.style.display = 'none'; }
 
-    const vop = document.getElementById('vop');
-    const vopErr = document.getElementById('fg-vop-err');
+    var vop = document.getElementById('vop');
+    var vopErr = document.getElementById('fg-vop-err');
     if (!vop.checked) {
       vopErr.style.display = 'block'; ok = false;
     } else { vopErr.style.display = 'none'; }
 
     if (!ok) return;
 
-    const jmeno      = document.getElementById('jmeno').value.trim();
-    const telefon    = document.getElementById('telefon').value.trim();
-    const email      = document.getElementById('email').value.trim();
-    const ulice      = document.getElementById('ulice').value.trim();
-    const obec       = document.getElementById('obec-form').value;
-    const psc        = document.getElementById('psc').value.trim();
-    const objednavka = document.getElementById('objednavka').value.trim();
-    const platbaVal  = document.getElementById('platba').value;
-    const platbaMap  = { hotove: 'Hotově při rozvozu', prevod: 'Bankovní převod', nevim: 'Nevím, chci poradit' };
+    var jmeno      = document.getElementById('jmeno').value.trim();
+    var telefon    = document.getElementById('telefon').value.trim();
+    var email      = document.getElementById('email').value.trim();
+    var ulice      = document.getElementById('ulice').value.trim();
+    var obec       = document.getElementById('obec-form').value;
+    var psc        = document.getElementById('psc').value.trim();
+    var objednavka = document.getElementById('objednavka').value.trim();
+    var platbaVal  = document.getElementById('platba').value;
+    var platbaMap  = { hotove: 'Hotově při rozvozu', prevod: 'Bankovní převod', nevim: 'Nevím, chci poradit' };
 
-    const subject = 'Nová objednávka obědů – ' + jmeno;
-    const body = [
+    var subject = 'Nová objednávka obědů – ' + jmeno;
+    var body = [
       'Jméno: '    + jmeno,
       'Telefon: '  + telefon,
       'E-mail: '   + email,
@@ -130,18 +140,18 @@ if (form) {
       'Způsob platby: ' + (platbaMap[platbaVal] || platbaVal),
     ].join('\n');
 
-    const mailtoUrl = 'mailto:obedy@kvalitnipodzimzivota.cz'
+    var mailtoUrl = 'mailto:obedy@kvalitnipodzimzivota.cz'
       + '?subject=' + encodeURIComponent(subject)
       + '&body='    + encodeURIComponent(body);
 
-    const tempLink = document.createElement('a');
+    var tempLink = document.createElement('a');
     tempLink.href = mailtoUrl;
     document.body.appendChild(tempLink);
     tempLink.click();
     document.body.removeChild(tempLink);
 
-    const successEl = document.getElementById('form-success');
-    const fallbackLink = document.createElement('a');
+    var successEl = document.getElementById('form-success');
+    var fallbackLink = document.createElement('a');
     fallbackLink.href = mailtoUrl;
     fallbackLink.textContent = 'klikněte zde';
     fallbackLink.style.cssText = 'color:inherit;font-weight:600;text-decoration:underline;';
@@ -149,39 +159,39 @@ if (form) {
     successEl.appendChild(fallbackLink);
     successEl.appendChild(document.createTextNode('.'));
     successEl.classList.add('visible');
-    form.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
+    form.querySelectorAll('input,select,textarea,button').forEach(function(el) { el.disabled = true; });
   });
 
   // Live validace
-  ['jmeno', 'telefon', 'email', 'ulice'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('blur', () => validateField('fg-' + id, id));
+  ['jmeno', 'telefon', 'email', 'ulice'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('blur', function() { validateField('fg-' + id, id); });
   });
-  const obecEl = document.getElementById('obec-form');
-  if (obecEl) obecEl.addEventListener('change', () => validateField('fg-obec', 'obec-form'));
-  const objEl = document.getElementById('objednavka');
-  if (objEl) objEl.addEventListener('blur', () => validateField('fg-objednavka', 'objednavka'));
+  var obecEl = document.getElementById('obec-form');
+  if (obecEl) obecEl.addEventListener('change', function() { validateField('fg-obec', 'obec-form'); });
+  var objEl = document.getElementById('objednavka');
+  if (objEl) objEl.addEventListener('blur', function() { validateField('fg-objednavka', 'objednavka'); });
 }
 
 function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  const isOpen = item.classList.contains('open');
+  var item = btn.closest('.faq-item');
+  var isOpen = item.classList.contains('open');
 
-  document.querySelectorAll('.faq-item.open').forEach(el => {
-    const ans = el.querySelector('.faq-a');
+  document.querySelectorAll('.faq-item.open').forEach(function(el) {
+    var ans = el.querySelector('.faq-a');
     ans.style.height = ans.scrollHeight + 'px';
-    ans.getBoundingClientRect(); // force reflow
+    ans.getBoundingClientRect();
     ans.style.height = '0';
     el.classList.remove('open');
     el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
   });
 
   if (!isOpen) {
-    const ans = item.querySelector('.faq-a');
+    var ans = item.querySelector('.faq-a');
     item.classList.add('open');
     btn.setAttribute('aria-expanded', 'true');
-    ans.getBoundingClientRect(); // force reflow
+    ans.getBoundingClientRect();
     ans.style.height = ans.scrollHeight + 'px';
-    ans.addEventListener('transitionend', () => { ans.style.height = 'auto'; }, { once: true });
+    ans.addEventListener('transitionend', function() { ans.style.height = 'auto'; }, { once: true });
   }
 }

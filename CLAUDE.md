@@ -36,15 +36,15 @@ When the user asks to update prices or locations, edit this table, then run the 
 
 | Location | Total price | Delivery fee | Notes |
 |---|---|---|---|
-| Vestec | 75 Kč | free (covered by discount) | Municipal discount 95 Kč off (35 Kč delivery + 60 Kč off meal). Not guaranteed. |
+| Vestec | 75 Kč | free (covered by discount) | Municipal discount 95 Kč off (35 Kč delivery + 60 Kč off meal) for seniors over 71. Not guaranteed. |
 | Praha – Libuš | 135 Kč + 11 Kč | 11 Kč/lunch | |
-| Praha – Písnice | 135 Kč + 35/10 Kč | 35 Kč (1st) + 10 Kč (each additional to same address) | |
+| Praha – Písnice | 135 Kč + 11 Kč | 11 Kč/lunch | |
 | Jesenice (vč. Zdiměřic, Osnice, Kocandy) | 135 Kč + 11 Kč | 11 Kč/lunch | |
 | Dolní Břežany (vč. Lhoty, Zálepů) | 135 Kč | free | |
 | Ohrobec | 135 Kč + 11 Kč | 11 Kč/lunch | |
 | Dobřejovice | 105 Kč | free (covered by discount) | Municipal discount 65 Kč off (35 Kč delivery + 30 Kč off meal). Not guaranteed. |
 | Zvole | 135 Kč | free | |
-| Březová – Oleško | 135 Kč + 35/10 Kč | 35 Kč (1st) + 10 Kč (each additional) | |
+| Březová – Oleško | 135 Kč | free | |
 | Radějovice | 135 Kč | free | |
 | Velké Přílepy | 135 Kč | free | |
 | Statenice – Černý Vůl | 135 Kč | free | |
@@ -54,10 +54,11 @@ When the user asks to update prices or locations, edit this table, then run the 
 | Lysolaje | 135 Kč + 35/10 Kč | 35 Kč (1st) + 10 Kč (each additional) | |
 | Other areas | 135 Kč + 35/10 Kč | 35 Kč (1st) + 10 Kč (each additional) | |
 
-**When told to update pricing**, apply changes from this table consistently across:
-1. `index.html` — delivery area grid (lines ~155–220) and price calculator `<select>` options
-2. `assets/js/index.js` — `CENY` object (lines ~3–20) and `POZNAMKY` strings (lines ~23–40)
-3. `vop.html` — section 6 (cena, platební podmínky)
+**When told to update pricing**, edit `assets/cenik.json` (single source of truth) and then update:
+1. `vop.html` — section 6 (legal text, cannot be auto-generated from JSON)
+2. This table in `CLAUDE.md`
+
+`assets/cenik.json` drives the delivery grid, calculator select, and order form select in `index.html` at runtime via `assets/js/index.js`.
 - Orders for **next week**, placed by end of current working week
 - Contact for orders: Jaroslava Kubásková, 778 095 906, obedy@kvalitnipodzimzivota.cz
 - Contact for billing: Šárka Radilová, 778 095 645, administrativa@kvalitnipodzimzivota.cz
