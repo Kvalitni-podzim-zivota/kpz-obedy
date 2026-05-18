@@ -1,10 +1,30 @@
-// Načtení ceníku a inicializace kalkulačky + selectů
+// ============================================================
+// assets/js/index.js – logika pro index.html
+//
+// Tento soubor dělá tři věci:
+//   1. Načte assets/cenik.json a z něj dynamicky vykreslí
+//      tabulku cen, select kalkulačky a select formuláře.
+//   2. Spočítá orientační cenu (funkce spocitej).
+//   3. Zpracuje odeslání objednávkového formuláře přes mailto.
+//
+// Ceník je záměrně v JSON (ne hardkódovaný tady), aby stačilo
+// při změně cen nebo oblastí editovat pouze assets/cenik.json.
+// ============================================================
+
+
+// ── 1. CENÍK ─────────────────────────────────────────────────
+
+// _ceny a _poznamky se naplní po načtení JSON; dokud nejsou
+// naplněné, spocitej() nic nedělá (guard na řádku 56).
 let _ceny = null;
 let _poznamky = null;
 
+// Cesta je relativní k index.html, ne k tomuto souboru.
 fetch('assets/cenik.json')
   .then(function(r) { return r.json(); })
   .then(function(data) {
+
+    // Sestavíme rychlé lookup tabulky pro kalkulačku.
     _ceny = {};
     _poznamky = {};
     data.zones.forEach(function(z) {
@@ -12,7 +32,9 @@ fetch('assets/cenik.json')
       _poznamky[z.id] = z.poznamka;
     });
 
-    // Mřížka doručovacích oblastí
+    // -- Mřížka doručovacích oblastí --
+    // Zóny s inGrid: false (tj. "Jiná obec") se v mřížce nezobrazí –
+    // mřížka slouží jako přehled cen, ne jako úplný seznam obcí.
     var grid = document.getElementById('cenik-grid');
     if (grid) {
       var gridHtml = '';
@@ -26,7 +48,9 @@ fetch('assets/cenik.json')
       grid.innerHTML = gridHtml;
     }
 
-    // Select kalkulačky
+    // -- Select kalkulačky --
+    // selectLabel je nepovinný – používá se jen tam, kde název zóny
+    // nestačí (např. "Jesenice (vč. Zdiměřic, Osnice, Kocandy)").
     var calcSelect = document.getElementById('obec');
     if (calcSelect) {
       var calcHtml = '<option value="">– vyberte obec –</option>';
@@ -36,7 +60,10 @@ fetch('assets/cenik.json')
       calcSelect.innerHTML = calcHtml;
     }
 
-    // Select objednávkového formuláře (jednotlivé obce vč. spádových)
+    // -- Select objednávkového formuláře --
+    // Formulář potřebuje individuální obce (vč. spádových), proto
+    // iterujeme přes z.villages místo přes zóny. Hodnota optionu
+    // je název obce – přijde do těla e-mailu jako adresa doručení.
     var formSelect = document.getElementById('obec-form');
     if (formSelect) {
       var formHtml = '<option value="">– vyberte obec –</option>';
@@ -50,8 +77,15 @@ fetch('assets/cenik.json')
     }
   });
 
+
+// ── 2. KALKULAČKA ────────────────────────────────────────────
+
+// Voláno z onchange/oninput atributů v index.html.
+// Pro dopravné 35 Kč (Lysolaje, jiné obce) kalkulačka počítá
+// jednoduše jidlo+doprava na oběd – nezohledňuje slevu za druhý
+// a další oběd na stejnou adresu (to se řeší individuálně).
 function spocitej() {
-  if (!_ceny) return;
+  if (!_ceny) return; // JSON ještě není načtený
   var obec = document.getElementById('obec').value;
   var pocet = parseInt(document.getElementById('pocet').value, 10);
   var result = document.getElementById('result');
@@ -72,9 +106,20 @@ function spocitej() {
   result.classList.add('visible');
 }
 
-// Objednávkový formulář – validace
+
+// ── 3. OBJEDNÁVKOVÝ FORMULÁŘ ─────────────────────────────────
+
+// Formulář nevyužívá server – po odeslání otevře mailto: odkaz
+// s předvyplněným předmětem a tělem. E-mailový klient uživatele
+// zprávu zobrazí; uživatel ji sám odešle.
+//
+// Pokud by se do budoucna přecházelo na server (Formspree, PHP…),
+// stačí nahradit blok s mailtoUrl za fetch() POST.
+
 var form = document.getElementById('objednavka-form');
 if (form) {
+
+  // Zkontroluje jedno pole: přidá/odebere třídu 'invalid' a vrátí bool.
   function validateField(id, fieldId) {
     var fg = document.getElementById(id);
     var el = document.getElementById(fieldId);
@@ -86,6 +131,8 @@ if (form) {
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
+
+    // Validace všech povinných polí před sestavením mailu.
     var ok = true;
     ok = validateField('fg-jmeno', 'jmeno') && ok;
     ok = validateField('fg-telefon', 'telefon') && ok;
@@ -94,6 +141,8 @@ if (form) {
     ok = validateField('fg-obec', 'obec-form') && ok;
     ok = validateField('fg-objednavka', 'objednavka') && ok;
 
+    // Tři checkboxy jsou povinné – chybová hláška se zobrazí/skryje ručně,
+    // protože checkboxy nemají fg-* wrapper se třídou 'invalid'.
     var pristiTyden = document.getElementById('pristi-tyden');
     var pristiErr = document.getElementById('fg-pristi-tyden-err');
     if (!pristiTyden.checked) {
@@ -114,6 +163,7 @@ if (form) {
 
     if (!ok) return;
 
+    // Sestavení těla e-mailu z hodnot formuláře.
     var jmeno      = document.getElementById('jmeno').value.trim();
     var telefon    = document.getElementById('telefon').value.trim();
     var email      = document.getElementById('email').value.trim();
@@ -144,12 +194,16 @@ if (form) {
       + '?subject=' + encodeURIComponent(subject)
       + '&body='    + encodeURIComponent(body);
 
+    // Přímé window.location.href = mailtoUrl nefunguje spolehlivě
+    // ve všech prohlížečích; dočasný odkaz funguje všude.
     var tempLink = document.createElement('a');
     tempLink.href = mailtoUrl;
     document.body.appendChild(tempLink);
     tempLink.click();
     document.body.removeChild(tempLink);
 
+    // Zobrazíme potvrzení a zablokujeme formulář, aby uživatel
+    // neodeslal objednávku dvakrát.
     var successEl = document.getElementById('form-success');
     var fallbackLink = document.createElement('a');
     fallbackLink.href = mailtoUrl;
@@ -162,7 +216,8 @@ if (form) {
     form.querySelectorAll('input,select,textarea,button').forEach(function(el) { el.disabled = true; });
   });
 
-  // Live validace
+  // Live validace při opuštění pole (blur) – uživatel dostane
+  // zpětnou vazbu ještě před pokusem o odeslání.
   ['jmeno', 'telefon', 'email', 'ulice'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.addEventListener('blur', function() { validateField('fg-' + id, id); });
@@ -173,25 +228,36 @@ if (form) {
   if (objEl) objEl.addEventListener('blur', function() { validateField('fg-objednavka', 'objednavka'); });
 }
 
+
+// ── 4. FAQ ACCORDION ─────────────────────────────────────────
+
+// Otevře/zavře jednu otázku a zároveň zavře ostatní.
+// Výška se animuje přes CSS transition na vlastnosti height –
+// proto potřebujeme explicitně nastavit výšku v px (ne 'auto')
+// před začátkem i koncem animace.
 function toggleFaq(btn) {
   var item = btn.closest('.faq-item');
   var isOpen = item.classList.contains('open');
 
+  // Zavři všechny aktuálně otevřené položky.
   document.querySelectorAll('.faq-item.open').forEach(function(el) {
     var ans = el.querySelector('.faq-a');
-    ans.style.height = ans.scrollHeight + 'px';
-    ans.getBoundingClientRect();
+    ans.style.height = ans.scrollHeight + 'px'; // z 'auto' na konkrétní px (animace potřebuje číslo)
+    ans.getBoundingClientRect();                 // force reflow, aby prohlížeč zaregistroval změnu
     ans.style.height = '0';
     el.classList.remove('open');
     el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
   });
 
+  // Pokud kliknutá položka nebyla otevřená, otevři ji.
   if (!isOpen) {
     var ans = item.querySelector('.faq-a');
     item.classList.add('open');
     btn.setAttribute('aria-expanded', 'true');
-    ans.getBoundingClientRect();
+    ans.getBoundingClientRect();                 // force reflow
     ans.style.height = ans.scrollHeight + 'px';
+    // Po doběhnutí animace přepneme na 'auto', aby obsah mohl
+    // měnit výšku (např. při změně velikosti okna).
     ans.addEventListener('transitionend', function() { ans.style.height = 'auto'; }, { once: true });
   }
 }
